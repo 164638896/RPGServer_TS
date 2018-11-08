@@ -1,0 +1,24 @@
+{
+  "development":{
+    "connector": [
+    {"id": "connector-server-1", "host": "192.168.6.100", "port": 3150, "clientHost": "192.168.6.100", "clientPort": 3010, "frontend": true , "args" : " --inspect=10001"}
+    ],
+	"gate": [
+	    {"id": "gate-server-1", "host": "192.168.6.100", "clientPort": 3014, "frontend": true, "args": "--inspect=10003"}
+	],
+	"area":[
+        {"id":"area-server-1", "host":"192.168.6.100", "port":6050, "args": "--inspect=10002"}
+    ]
+  },
+  "production":{
+    "connector": [
+    {"id": "connector-server-1", "host": "192.168.6.100", "port": 3150, "clientHost": "192.168.6.100", "clientPort": 3010, "frontend": true}
+    ],
+	"gate": [
+	    {"id": "gate-server-1", "host": "192.168.6.100", "clientPort": 3014, "frontend": true}
+	],
+	"area":[
+        {"id":"area-server-1", "host":"192.168.6.100", "port":6050}
+    ]
+  }
+}

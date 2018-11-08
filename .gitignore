@@ -1,0 +1,7 @@
+rpg-server/game-server/node_modules
+rpg-server/game-server/.idea
+rpg-server/game-server/.vscode
+rpg-server/game-server/dist/app
+rpg-server/game-server/dist/logs
+rpg-server/game-server/dist/app.js
+rpg-server/game-server/dist/preload.js
