@@ -1,11 +1,14 @@
 import {Application, BackendSession, pinus} from 'pinus';
-import {Player} from '../../../domain/entity';
+import {Entity, Player} from '../../../domain/entity';
 import {AreaService} from '../../../services/areaService';
 
 import { getLogger } from 'pinus-logger';
 import * as path from 'path';
 import {UserSql} from '../../../mysql/userSql';
+import * as MathUtils from "../../../util/MathUtils";
+
 let logger = getLogger('pinus', path.basename(__filename));
+
 
 export default function(app: Application) {
     return new PlayerHandler(app);
@@ -42,7 +45,9 @@ export class PlayerHandler {
             return { code: 500, error: 'invalid player:' + playerId };
         }
 
-        this.mAreaService.getChannel().pushMessage('onMove', {InstId: player.mInstId, x: msg.x, y: msg.y, z: msg.z});
+        player.move(msg.x, msg.y, msg.z);
+        let pos = player.getPos();
+        this.mAreaService.getChannel().pushMessage('onMove', {InstId: player.mInstId, x: pos.x, y: pos.y, z: pos.z});
 
         return { code: 200 };
     }
@@ -55,6 +60,19 @@ export class PlayerHandler {
             return { code: 500, error: 'invalid playerInstId:' + msg.playerInstId };
         }
 
-        this.mAreaService.getChannel().pushMessage('onAttack', {skillId: msg.skillId, playerInstId: msg.playerInstId, targetInstId: 0});
+        let targets = [];
+        let pos = player.getPos();
+        let forward = player.getForward();
+        let entities = this.mAreaService.getAllEntities();
+        for(let i in entities) {
+            let e = entities[i] as Entity;
+            let tPos = e.getPos();
+            if (MathUtils.IsPointInCircularSector(pos.x, pos.z, forward.x, forward.z, 0.5, Math.PI / 2, tPos.x, tPos.z)) {
+                targets.push(e.mInstId);
+            }
+        }
+
+        //MathUtils.IsPointInCircularSector();
+        this.mAreaService.getChannel().pushMessage('onAttack', {skillId: msg.skillId, playerInstId: msg.playerInstId, targets: targets});
     }
 }

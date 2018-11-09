@@ -44,6 +44,9 @@ app.configure('production|development', 'area', function() {
 
 // app configure
 app.configure('production|development', function () {
+
+    app.enable('systemMonitor'); //允许监控
+
     // route configures
     // app.route('chat', routeUtil.chat);
 

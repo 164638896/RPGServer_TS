@@ -14,6 +14,10 @@ export class Entity extends EventEmitter {
     private y: number;
     private z: number;
 
+    private forwardX: number;
+    private forwardY: number;
+    private forwardZ: number;
+
     constructor(data: any, type: EntityType) {
         super();
         this.mInstId = ++mEntityInstId;
@@ -33,12 +37,32 @@ export class Entity extends EventEmitter {
         this.y = y;
         this.z = z;
     }
+
+    getForward() {
+        return {x: this.forwardX, y: this.forwardY, z: this.forwardZ};
+    }
+
+    setForward(x: number, y: number, z: number) {
+        this.forwardX = x;
+        this.forwardY = y;
+        this.forwardZ = z;
+    }
 }
 
 
 export class Role extends Entity {
     constructor(opts: any,  type: EntityType) {
         super(opts, type);
+    }
+
+    move(x: number, y: number, z: number) {
+        let oldPos = this.getPos();
+        let fX = x - oldPos.x;
+        let fY = y - oldPos.y;
+        let fZ = z - oldPos.z;
+
+        this.setForward(fX, fY, fZ);
+        this.setPos(x, y, z);
     }
 }
 
