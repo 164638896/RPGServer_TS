@@ -1,6 +1,7 @@
 import {EventEmitter} from 'events';
 import {FRONTENDID} from 'pinus/lib/util/constants';
 import {EntityType} from '../consts/consts';
+import {Vector3} from "../util/vector3";
 
 export let mEntityInstId: number = 0;
 
@@ -10,42 +11,32 @@ export class Entity extends EventEmitter {
     public mType: EntityType;
     private mAreaId: number;
 
-    private x: number;
-    private y: number;
-    private z: number;
-
-    private forwardX: number;
-    private forwardY: number;
-    private forwardZ: number;
+    private readonly mPos: Vector3;
+    private readonly mForward: Vector3;
 
     constructor(data: any, type: EntityType) {
         super();
         this.mInstId = ++mEntityInstId;
         this.mType = type;
         this.mAreaId = 1;
-        this.x = 0.29;
-        this.y = 0.282;
-        this.z = -2.6;
+        this.mPos = new Vector3(0.29, 0.282, -2.6);
+        this.mForward = new Vector3(0, 0, 1);
     }
 
-    getPos() {
-        return {x: this.x, y: this.y, z: this.z};
+    getPos() : Vector3 {
+        return this.mPos;
     }
 
     setPos(x: number, y: number, z: number) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        this.mPos.set(x, y, z);
     }
 
-    getForward() {
-        return {x: this.forwardX, y: this.forwardY, z: this.forwardZ};
+    getForward() : Vector3 {
+        return this.mForward;
     }
 
     setForward(x: number, y: number, z: number) {
-        this.forwardX = x;
-        this.forwardY = y;
-        this.forwardZ = z;
+        this.mForward.set(x, y, z);
     }
 }
 
