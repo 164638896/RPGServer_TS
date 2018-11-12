@@ -34,7 +34,7 @@ export class PlayerHandler {
 
         this.mAreaService.addEntity(player);
 
-        return { code: 200, entities: this.mAreaService.getAllEntities(), curPlayerInstId: player.mInstId };
+        return { code: 200, entities: this.mAreaService.getAllEntitiesInfo(), curPlayerInstId: player.mInstId };
     }
 
     async move(msg: {x: number, y: number, z: number}, session: BackendSession) {

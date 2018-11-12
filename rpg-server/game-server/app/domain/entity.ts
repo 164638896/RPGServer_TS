@@ -6,13 +6,13 @@ import {Vector3} from "../util/vector3";
 export let mEntityInstId: number = 0;
 
 export class Entity extends EventEmitter {
-    public mInstId: number;
+    public mInstId: number = 0;
     public mFrontendId: FRONTENDID;
-    public mType: EntityType;
-    private mAreaId: number;
+    public mType: EntityType = EntityType.null;
+    protected mAreaId: number;
 
-    private readonly mPos: Vector3;
-    private readonly mForward: Vector3;
+    protected readonly mPos: Vector3;
+    protected readonly mForward: Vector3;
 
     constructor(data: any, type: EntityType) {
         super();
@@ -38,12 +38,26 @@ export class Entity extends EventEmitter {
     setForward(x: number, y: number, z: number) {
         this.mForward.set(x, y, z);
     }
+
+    getInfo(): object {
+        return {
+
+        }
+    }
 }
 
-
 export class Role extends Entity {
+    public name: string;
+    protected mHp: number = 100;
+    protected mAtk: number = 1;
+    protected mDef: number = 1;
+    protected mMoveSpeed: number = 1;
+    protected mLevel: number = 0;
+    protected mSkillList: Array<number> = new Array<number>();
+
     constructor(opts: any,  type: EntityType) {
         super(opts, type);
+        this.name = opts.name;
     }
 
     move(x: number, y: number, z: number) {
@@ -60,12 +74,38 @@ export class Role extends Entity {
 export class Player extends Role {
     public uid: string; // 用户名Id，数据库用户表里的用户Id, 表示这个角色是哪个用户的
     public  id: number; // playerId, connector 调用 area服务器时候需要用到这个Id，要通过 playerId 找到真正的InstId, playerId 服务器之间内部使用，给客户端使用的InstId
-    public name: string;
 
     constructor(playerData: any) {
         super(playerData, EntityType.PLAYER);
         this.uid = playerData.userId;
         this.id = playerData.id;
-        this.name = playerData.name;
+
+        for(let i =1; i <= 4; ++i) {
+            this.mSkillList.push(i);
+        }
     }
+
+    getInfo(): object {
+        return {
+            type: this.mType,
+            sceneId: this.mAreaId,
+            instId: this.mInstId,
+            moveSpeed: this.mMoveSpeed,
+            atk: this.mAtk,
+            def: this.mDef,
+            hp: this.mHp,
+            level: this.mLevel,
+            pos: this.mPos,
+            dir: this.mForward,
+            skillList: this.mSkillList
+        }
+    }
+}
+
+export class Npc extends Role {
+
+}
+
+export class Monster extends Role {
+
 }

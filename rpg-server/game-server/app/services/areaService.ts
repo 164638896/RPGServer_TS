@@ -56,7 +56,7 @@ export class AreaService {
 
        // this.addEvent(e);
 
-        this.added.push(e); // 100毫秒内的一起推送给玩家
+        this.added.push(e.getInfo()); // 100毫秒内的一起推送给玩家
         return true;
     }
 
@@ -119,5 +119,14 @@ export class AreaService {
 
     getAllEntities(): object {
         return this.entities;
+    }
+
+    getAllEntitiesInfo(): any {
+        let eInfo = [];
+        for (let i in this.entities) {
+            eInfo.push(this.entities[i].getInfo());
+        }
+
+        return eInfo;
     }
 }

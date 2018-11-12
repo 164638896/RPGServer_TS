@@ -15,6 +15,7 @@ export class MESSAGE {
 }
 
 export class  EntityType {
+    static null: string ='';
     static PLAYER: string = 'player';
     static NPC: string = 'npc';
     static MOB: string = 'mob';
