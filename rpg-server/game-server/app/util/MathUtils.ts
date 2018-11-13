@@ -1,6 +1,6 @@
 
 
-//c原点, u 方向, r半径, theta角度, p点是否在扇形里
+//c原点, u 方向, r半径, theta 一半的角度, p点是否在扇形里
 export function  IsPointInCircularSector(cx: number, cy: number, ux: number, uy: number, r: number, theta: number, px: number, py: number): boolean {
     if (r <= 0 || theta <= 0 || theta > Math.PI) {
         console.log("IsPointInCircularSector 参数错误 r=", r, " theta=", theta);

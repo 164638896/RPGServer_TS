@@ -1,20 +1,30 @@
 import {Channel} from 'pinus/lib/common/service/channelService';
 import {pinus} from 'pinus';
-import {Entity, Player} from '../domain/entity';
+import {Entity, Monster, Npc, Player} from '../domain/entity';
 import {EntityType} from '../consts/consts';
+import {DataApi} from "../util/dataApi";
+import {Vector3} from "../util/vector3";
+import * as RandomUtils from "../util/RandomUtils";
+import {MonsterData, NpcData, PlayerData} from "../domain/entityData";
 
 
 export class AreaService {
     private mInstId: number;
     private channel: Channel = null;
-    private entities = {}; // 所有物体实例包括player
+    private mEntityList = {};
+
     private playerIds = {}; // playerId->mInstId，为了给connector服务器使用
 
     private added = []; // the added entities in one tick
     private reduced = []; // the reduced entities in one tick
 
     constructor() {
-        setInterval(this.tick.bind(this), 100);
+        this.mEntityList[EntityType.Player] = {};
+        this.mEntityList[EntityType.Monster] = {};
+        this.mEntityList[EntityType.Npc] = {};
+
+        setInterval(this.tick.bind(this), 200);
+        this.generateMonster(10);
     }
 
     tick() {
@@ -34,78 +44,91 @@ export class AreaService {
 
             this.added = [];
         }
+
+        let monsterList = this.mEntityList[EntityType.Monster];
+
+        if( Object.keys(monsterList).length < 20) {
+            this.generateMonster(5);
+        }
+
+        for (let i in monsterList) {
+            monsterList[i].update();
+        }
     }
 
     addEntity(e: Entity): boolean {
-
-        if (!e || !e.mInstId) {
+        if (!e) {
             return false;
         }
 
-        this.entities[e.mInstId] = e;
+        let data = e.getData();
+        if(data.mType === EntityType.Player) {
+            let playerData = data as PlayerData;
+            this.getChannel().add(playerData.uid, playerData.mFrontendId);
 
-        if(e.mType === EntityType.PLAYER) {
-            let player = e as Player;
-            this.getChannel().add(player.uid, e.mFrontendId);
-
-            if (!!this.playerIds[player.id]) {
+            if (!!this.playerIds[playerData.id]) {
                 console.error('add player twice! player : %j', e);
             }
-            this.playerIds[player.id] = e.mInstId;
+            this.playerIds[playerData.id] = playerData.mInstId;
+            this.mEntityList[EntityType.Player][playerData.mInstId] = e;
+        }
+        else if(data.mType === EntityType.Monster) {
+            let monsterData = data as MonsterData;
+            this.mEntityList[EntityType.Monster][monsterData.mInstId] = e;
+        }
+        else if(data.mType === EntityType.Npc) {
+            let npcData = data as NpcData;
+            this.mEntityList[EntityType.Npc][npcData.mInstId] = e;
         }
 
-       // this.addEvent(e);
-
-        this.added.push(e.getInfo()); // 100毫秒内的一起推送给玩家
+        this.added.push(data); // 100毫秒内的一起推送给玩家
         return true;
     }
 
-    removeEntity(InstId: number) {
+    removeEntity(InstId: number, type: EntityType) {
 
-        let e: Entity = this.entities[InstId];
+       let e = this.mEntityList[type][InstId];
         if (!e) {
             return true;
         }
 
-        if(e.mType === EntityType.PLAYER) {
-            let player = e as Player;
+        let data = e.getData();
+
+        if(data.mType === EntityType.Player) {
+            let playerData = data as PlayerData;
             let channel = this.getChannel();
-            channel.leave(player.uid, e.mFrontendId);
-            delete this.playerIds[player.id];
+            channel.leave(playerData.uid, playerData.mFrontendId);
+            delete this.playerIds[playerData.id];
         }
 
-        delete this.entities[InstId];
+        delete this.mEntityList[type][InstId];
+
         this.reduced.push(InstId); // 100毫秒内的一起推送给玩家
-
-        // let param = {
-        //     playerId: InstId,
-        // };
-        //
-        // // 通知？
-        // channel.pushMessage('onUserLeave', param);
     }
 
-    getEntity(InstId: number): Entity {
-        let e: Entity = this.entities[InstId];
-        if (!e) {
-            return null;
+    getEntity(InstId: number, type: EntityType): Entity {
+
+        let e = this.mEntityList[type][InstId];
+        if(!e)
+        {
+            console.log("entiity is null type =", type, "InstId = ", InstId);
+            return;
         }
 
-        return this.entities[InstId];
+        return e;
     }
 
-    getPlayerByPlayerId(playerId: number): Entity {
+    getPlayerByPlayerId(playerId: number, type: EntityType): Entity {
         let instId = this.playerIds[playerId];
-        return this.getEntity(instId);
+        return this.getEntity(instId, type);
     }
 
-    getAllPlayersEntity() {
-        let _players = [];
-        for (let id in this.playerIds) {
-            _players.push(this.entities[this.playerIds[id]]);
-        }
+    getEntityByType(type: EntityType): object {
+        return this.mEntityList[type];
+    }
 
-        return _players;
+    getAllEntities () : object{
+        return this.mEntityList;
     }
 
     getChannel(): Channel {
@@ -117,16 +140,33 @@ export class AreaService {
         return this.channel;
     }
 
-    getAllEntities(): object {
-        return this.entities;
-    }
+    // getAllEntities(): object {
+    //     return this.entities;
+    // }
 
     getAllEntitiesInfo(): any {
         let eInfo = [];
-        for (let i in this.entities) {
-            eInfo.push(this.entities[i].getInfo());
+
+        for(let type in this.mEntityList) {
+            let entityArray = this.mEntityList[type];
+            for (let i in entityArray) {
+                eInfo.push(entityArray[i].getData());
+            }
         }
 
         return eInfo;
+    }
+
+    // 生成怪物
+    generateMonster(n: number) {
+        if (!n) {
+            return;
+        }
+        for (let i = 0; i < n; i++) {
+
+            //let data: any = DataApi.getInstance().mCharacter.findById(2);
+            let m: Monster = new Monster({name: 'monster', x: RandomUtils.limit(-4, 4), y: 0.282, z: RandomUtils.limit(-3.5, -2)}, EntityType.Monster);
+            this.addEntity(m);
+        }
     }
 }

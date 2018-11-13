@@ -14,10 +14,15 @@ export class MESSAGE {
     static PUSH: number = 600;
 }
 
-export class  EntityType {
-    static null: string ='';
-    static PLAYER: string = 'player';
-    static NPC: string = 'npc';
-    static MOB: string = 'mob';
-    static ITEM: string = 'item';
+export enum EntityType {
+    None = 0,
+    Player,
+    Monster,
+    Npc,
+
+    // static null: string ='';
+    // static PLAYER: string = 'player';
+    // static NPC: string = 'npc';
+    // static MONSTER: string = 'monster';
+    // static ITEM: string = 'item';
 }

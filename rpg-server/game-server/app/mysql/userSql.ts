@@ -2,6 +2,7 @@ import {invokeCallback, pinus} from 'pinus';
 import * as util from 'util';
 import {Player} from '../domain/entity';
 import {DataApi} from '../util/dataApi';
+import {PlayerData} from "../domain/entityData";
 
 export class UserSql {
 
@@ -105,15 +106,16 @@ export class UserSql {
 
     createPlayerA = util.promisify(this.createPlayer);
     async createPlayer(uid: string, name: string, typeId: number, cb: Function) {
-        let sql = 'insert into Player (userId, kindId, kindName, name, country, rank, level, experience, attackValue, defenceValue, hitRate, dodgeRate, walkSpeed, attackSpeed, hp, mp, maxHp, maxMp, areaId, x, y, skillPoint) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+        let sql = 'insert into Player (userId, typeId, typeName, name, country, rank, level, exp, atk, def, hitRate, dodgeRate, moveSpeed, atkSpeed, hp, mp, maxHp, maxMp, areaId, x, y, z, skillPoint) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
         // let role = dataApi.role.findById(roleId);
         let character: any = DataApi.getInstance().mCharacter.findById(typeId);
         let role = {name: character.englishName, career: 'warrior', country: 1, gender: 'male'};
-        let x = 0;
-        let y = 0;
-        let areaId = 0;
+        let x = 0.29;
+        let y = 0.282;
+        let z = -2.6;
+        let areaId = 1;
         // role.country = 1;
-        let args = [uid, typeId, character.englishName, name, 1, 1, 1, 0, character.attackValue, character.defenceValue, character.hitRate, character.dodgeRate, character.walkSpeed, character.attackSpeed, character.hp, character.mp, character.hp, character.mp, areaId, x, y, 1];
+        let args = [uid, typeId, character.englishName, name, 1, 1, 1, 0, character.attackValue, character.defenceValue, character.hitRate, character.dodgeRate, character.walkSpeed, character.attackSpeed, character.hp, character.mp, character.hp, character.mp, areaId, x, y, z, 1];
 
         pinus.app.get('dbclient').query(sql, args, function(err, res) {
             if(err !== null) {
@@ -121,27 +123,38 @@ export class UserSql {
                 console.error(err);
                 invokeCallback(cb, err.message, null);
             } else {
-                let player = new Player({
+                invokeCallback(cb, null, {
                     id: res.insertId,
                     userId: uid,
-                    kindId: typeId,
-                    kindName: role.name,
-                    areaId: 1,
-                    roleName: name,
+                    typeId: typeId,
+                    typeName: role.name,
+                    areaId: areaId,
+                    name: name,
                     rank: 1,
                     level: 1,
-                    experience: 0,
-                    attackValue: character.attackValue,
-                    defenceValue: character.defenceValue,
+                    exp: 0,
+                    atk: character.atk,
+                    def: character.def,
                     skillPoint: 1,
                     hitRate: character.hitRate,
                     dodgeRate: character.dodgeRate,
-                    walkSpeed: character.walkSpeed,
-                    attackSpeed: character.attackSpeed,
-                    equipments: {},
-                    bag: null
+                    moveSpeed: character.moveSpeed,
+                    atkSpeed: character.atkSpeed,
                 });
-                invokeCallback(cb, null, player);
+            }
+        });
+    }
+
+    updatePlayer(player: Player, cb: Function) {
+        let sql = 'update Player set x = ? ,y = ? , x = ?, hp = ?, mp = ? , maxHp = ?, maxMp = ?, level = ?, exp = ?, areaId = ?, atk = ?, def = ?, moveSpeed = ?, atkSpeed = ? where id = ?';
+        let data = player.getData() as PlayerData;
+        let args = [data.mPos.x, data.mPos.y, data.mPos.z, data.mHp, data.mMp, data.mMaxHp, data.mMaxMp, data.mLevel, data.mExp, data.mAreaId, data.mAtk, data.mDef, data.mMoveSpeed, data.mAtkSpeed, data.id];
+        pinus.app.get('dbclient').query(sql, args, function(err, res) {
+            if(err !== null) {
+                console.error('write mysql failed!　' + sql + ' ' + JSON.stringify(player) + ' stack:' + err.stack);
+            }
+            if(!!cb && typeof cb == 'function') {
+                cb(!!err);
             }
         });
     }

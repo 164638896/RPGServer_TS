@@ -1,5 +1,6 @@
-import { Application, FrontendSession, bindRemoterMethod, RemoterClass } from 'pinus';
+import {Application, FrontendSession, RemoterClass} from 'pinus';
 import {AreaService} from '../../../services/areaService';
+import {EntityType} from "../../../consts/consts";
 
 export default function (app: Application) {
     return new PlayerRemote(app);
@@ -25,10 +26,11 @@ export class PlayerRemote {
 
     public async playerLeave(playerId: number, sid: string, name: string) {
 
-        let player = this.areaService.getPlayerByPlayerId(playerId);
+        let player = this.areaService.getPlayerByPlayerId(playerId, EntityType.Player);
         if (!player) {
             return { code: 500, error: true };
         }
-        this.areaService.removeEntity(player.mInstId);
+
+        this.areaService.removeEntity(player.getData().mInstId, EntityType.Player);
     }
 }

@@ -2,7 +2,7 @@
 	"development": {
 	  "host" : "192.168.6.200",
 		"port" : "3306",
-		"database" : "Pomelo",
+		"database" : "pinus",
 		"user" : "root",
 		"password" : "123456"
 	},
@@ -10,7 +10,7 @@
 	"production": {
 	  "host" : "192.168.6.200",
 		"port" : "3306",
-		"database" : "Pomelo",
+		"database" : "pinus",
 		"user" : "root",
 		"password" : "123456"
 	}
