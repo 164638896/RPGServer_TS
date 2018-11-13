@@ -106,16 +106,17 @@ export class UserSql {
 
     createPlayerA = util.promisify(this.createPlayer);
     async createPlayer(uid: string, name: string, typeId: number, cb: Function) {
-        let sql = 'insert into Player (userId, typeId, typeName, name, country, rank, level, exp, atk, def, hitRate, dodgeRate, moveSpeed, atkSpeed, hp, mp, maxHp, maxMp, areaId, x, y, z, skillPoint) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+        let sql = 'insert into Player (userId, typeId, typeName, name, country, rank, level, exp, atk, def, hitRate, dodgeRate, moveSpeed, atkSpeed, hp, mp, maxHp, maxMp, areaId, x, y, z, dirX, dirY, dirZ, skillPoint) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
         // let role = dataApi.role.findById(roleId);
         let character: any = DataApi.getInstance().mCharacter.findById(typeId);
         let role = {name: character.englishName, career: 'warrior', country: 1, gender: 'male'};
         let x = 0.29;
         let y = 0.282;
         let z = -2.6;
+        let dirZ = 1;
         let areaId = 1;
         // role.country = 1;
-        let args = [uid, typeId, character.englishName, name, 1, 1, 1, 0, character.attackValue, character.defenceValue, character.hitRate, character.dodgeRate, character.walkSpeed, character.attackSpeed, character.hp, character.mp, character.hp, character.mp, areaId, x, y, z, 1];
+        let args = [uid, typeId, character.englishName, name, 1, 1, 1, 0, character.attackValue, character.defenceValue, character.hitRate, character.dodgeRate, character.walkSpeed, character.attackSpeed, character.hp, character.mp, character.hp, character.mp, areaId, x, y, z, 0, 0, dirZ, 1];
 
         pinus.app.get('dbclient').query(sql, args, function(err, res) {
             if(err !== null) {

@@ -16,7 +16,7 @@ export class EntityData {
         this.mType = type;
         this.mAreaId = data.areaId;
         this.mPos = new Vector3(data.x, data.y, data.z);
-        this.mForward = new Vector3(0, 0, 1);
+        this.mForward = new Vector3(data.dirX, data.dirY, data.dirZ);
     }
 
     setPos(x: number, y: number, z: number) {

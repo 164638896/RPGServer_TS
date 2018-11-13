@@ -165,7 +165,7 @@ export class AreaService {
         for (let i = 0; i < n; i++) {
 
             //let data: any = DataApi.getInstance().mCharacter.findById(2);
-            let m: Monster = new Monster({name: 'monster', x: RandomUtils.limit(-4, 4), y: 0.282, z: RandomUtils.limit(-3.5, -2)}, EntityType.Monster);
+            let m: Monster = new Monster({name: 'monster', x: RandomUtils.limit(-4, 4), y: 0.282, z: RandomUtils.limit(-3.5, -2), dirX: RandomUtils.limit(-1, 1), dirY: 0, dirZ: RandomUtils.limit(-1, 1)}, EntityType.Monster);
             this.addEntity(m);
         }
     }

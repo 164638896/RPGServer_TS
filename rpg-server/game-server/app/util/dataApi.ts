@@ -1,4 +1,4 @@
-let character = require('../../config/data/character');
+let character = require('../../data/character');
 
 export class Data {
     private readonly data = {};
