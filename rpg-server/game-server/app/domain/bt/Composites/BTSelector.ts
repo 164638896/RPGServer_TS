@@ -42,7 +42,7 @@ export class BTSelector extends BTComposite {
         return BTResult.Failed;
     }
 
-    public  Clear () {
+    public Clear () {
         super.Clear();
 
         switch (this.clearOpt) {

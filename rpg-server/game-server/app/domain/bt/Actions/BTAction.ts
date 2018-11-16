@@ -10,7 +10,7 @@ enum BTActionStatus {
 export class BTAction extends BTNode {
     private _status: BTActionStatus = BTActionStatus.Ready;
 
-    public  Tick (): BTResult {
+    public Tick(): BTResult {
         let tickResult:BTResult = BTResult.Success;
 
         if (this._status == BTActionStatus.Ready) {
@@ -32,7 +32,7 @@ export class BTAction extends BTNode {
         return tickResult;
     }
 
-    public  Clear () {
+    public Clear() {
         super.Clear();
 
         if (this._status != BTActionStatus.Ready) {	// not cleared yet
@@ -41,14 +41,14 @@ export class BTAction extends BTNode {
         }
     }
 
-    protected Enter () {
+    protected Enter() {
 
     }
 
-    protected Execute () {return BTResult.Failed;}
+    protected Execute() {return BTResult.Failed;}
 
 
-    protected Exit () {
+    protected Exit() {
 
     }
 }
@@ -62,13 +62,13 @@ export class BTActionWait extends BTAction {
         this.mMilliseconds = milliseconds;
     }
 
-    protected  Enter () {
-        super.Enter ();
+    protected Enter() {
+        super.Enter();
 
         this.mStartTime = Date.now();
     }
 
-    protected  Execute (): BTResult {
+    protected Execute(): BTResult {
         if (Date.now() - this.mStartTime >= this.mMilliseconds) {
             return BTResult.Success;
         }
@@ -89,14 +89,14 @@ export class BTActionWaitRandom extends BTAction {
         this.mMillisecondsMax = millisecondsMax;
     }
 
-    protected Enter () {
-        super.Enter ();
+    protected Enter() {
+        super.Enter();
 
         this.mStartTime = Date.now();
         this.mInterval = RandomUtils.range(this.mMillisecondsMin, this.mMillisecondsMax);
     }
 
-    protected Execute (): BTResult {
+    protected Execute(): BTResult {
         if (Date.now() - this.mStartTime >= this.mInterval) {
             return BTResult.Success;
         }

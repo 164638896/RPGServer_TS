@@ -6,7 +6,7 @@ export abstract class BTNode {
     public isRunning: boolean;
     public clearTick: BTNode;
 
-    public Activate () {
+    public Activate() {
         if (this.clearTick != null) {
             this.clearTick.Activate();
         }
@@ -16,7 +16,7 @@ export abstract class BTNode {
         return BTResult.Failed;
     }
 
-    public Clear () {
+    public Clear() {
         this.isRunning = false;
 
         if (this.clearTick != null) {

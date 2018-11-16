@@ -1,8 +1,8 @@
 import {BTNode} from "../BTNode";
 import {BTResult} from "../BTConstants";
 
-export  class BTConditional extends BTNode {
-    public Tick (): BTResult {
+export class BTConditional extends BTNode {
+    public Tick(): BTResult {
         if (this.Check()) {
             return BTResult.Success;
         }
@@ -11,7 +11,7 @@ export  class BTConditional extends BTNode {
         }
     }
 
-    public Check (): boolean {
+    public Check(): boolean {
         return false;
     }
 }
@@ -40,7 +40,7 @@ export class PreconditionNOT extends BaseCondiction {
         this.name = nodeName;
     }
 
-    public  Check(): boolean {
+    public Check(): boolean {
         if (this.externalFunc != null) return !this.externalFunc();
         else return false;
     }

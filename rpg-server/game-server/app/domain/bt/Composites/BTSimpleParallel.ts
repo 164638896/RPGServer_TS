@@ -3,9 +3,9 @@ import {BTClearOpt, BTResult} from "../BTConstants";
 import {BTNode} from "../BTNode";
 
 export class BTSimpleParallel extends BTComposite {
-    private  _primaryChild : BTNode;
+    private _primaryChild : BTNode;
     private _runningChildren = new Array<BTNode>();
-    private  _shouldClearPrimaryChild: boolean = true;
+    private _shouldClearPrimaryChild: boolean = true;
 
     public SetPrimaryChild (node:BTNode, selectForClear:boolean = false) {
         if (this._primaryChild != null) {
@@ -21,7 +21,7 @@ export class BTSimpleParallel extends BTComposite {
         }
     }
 
-    public Activate () {
+    public Activate() {
         super.Activate ();
 
         this._primaryChild.Activate();
@@ -48,7 +48,7 @@ export class BTSimpleParallel extends BTComposite {
         }
     }
 
-    public Clear () {
+    public Clear() {
         super.Clear ();
 
         switch (this.clearOpt) {
@@ -81,7 +81,7 @@ export class BTSimpleParallel extends BTComposite {
         this.ResetRuningChildren();
     }
 
-    private ResetRuningChildren () {
+    private ResetRuningChildren() {
         this._runningChildren = new Array<BTNode>();
         for(let i in this._children) {
             let child = this._children[i];
@@ -90,7 +90,7 @@ export class BTSimpleParallel extends BTComposite {
 
     }
 
-    private RunBackground () {
+    private RunBackground() {
         for(let i = this._runningChildren.length - 1; i >= 0; --i) {
             let child : BTNode= this._runningChildren[i];
             let result: BTResult = child.Tick();

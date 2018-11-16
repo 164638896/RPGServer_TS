@@ -5,11 +5,11 @@ import {BTNode} from "../BTNode";
 export class BTSequence extends BTComposite {
     private _activeChildIndex: number;
 
-    public Tick (): BTResult {
+    public Tick(): BTResult {
         return this.TickFromActiveChild();
     }
 
-    public Clear () {
+    public Clear() {
         super.Clear();
 
         switch (this.clearOpt) {
@@ -61,7 +61,7 @@ export class BTSequence extends BTComposite {
         this._activeChildIndex = -1;
     }
 
-    private TickFromActiveChild (): BTResult {
+    private TickFromActiveChild(): BTResult {
         if (this._activeChildIndex == -1) {
             this._activeChildIndex = 0;
         }
