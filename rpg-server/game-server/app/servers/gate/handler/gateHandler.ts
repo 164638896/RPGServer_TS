@@ -33,6 +33,6 @@ export class GateHandler {
             return { code: 500, error: true };
         }
 
-        return { code: 200, host: res.host, port: res.clientPort };
+        return { code: 200, host: res.clientHost, port: res.clientPort };
     }
 }

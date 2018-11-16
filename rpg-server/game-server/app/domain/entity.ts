@@ -3,6 +3,7 @@ import {EntityType} from '../consts/consts';
 import {EntityData, MonsterData, PlayerData} from "./entityData";
 import {FRONTENDID} from "pinus/lib/util/constants";
 import {UserSql} from "../mysql/userSql";
+import {MonsterAI} from "./MonsterAI";
 
 
 export class Entity extends EventEmitter {
@@ -62,12 +63,21 @@ export class Player extends Role {
 }
 
 export class Npc extends Role {
-
+    constructor(data: any) {
+        super(data, EntityType.Npc);
+    }
 }
 
 export class Monster extends Role {
+    private mAi : MonsterAI;
 
-    update() {
+    constructor(data: any) {
+        super(data, EntityType.Monster);
+        this.mAi = new MonsterAI(this);
+        setInterval(this.tick.bind(this), 1000);
+    }
 
+    tick() {
+        this.mAi.update();
     }
 }

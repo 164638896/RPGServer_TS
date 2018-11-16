@@ -73,4 +73,18 @@ export class Vector3 {
     toString() {
         return '(' + this.x.toFixed(3) + ',' + this.y.toFixed(3) + ',' + this.z.toFixed(3) + ')';
     }
+
+    static distance(value1: Vector3, value2: Vector3): number {
+        let x = value1.x - value2.x;
+        let y = value1.y - value2.y;
+        let z = value1.z - value2.z;
+        return Math.sqrt((x * x) + (y * y) + (z * z));
+    }
+
+    static sub(value1: Vector3, value2: Vector3): Vector3 {
+        let x = value1.x - value2.x;
+        let y = value1.y - value2.y;
+        let z = value1.z - value2.z;
+        return new Vector3(x, y, z);
+    }
 }

@@ -5,7 +5,7 @@ import {EntityType} from '../consts/consts';
 import {DataApi} from "../util/dataApi";
 import {Vector3} from "../util/vector3";
 import * as RandomUtils from "../util/RandomUtils";
-import {MonsterData, NpcData, PlayerData} from "../domain/entityData";
+import {MonsterData, NpcData, PlayerData, RoleData} from "../domain/entityData";
 
 
 export class AreaService {
@@ -24,7 +24,6 @@ export class AreaService {
         this.mEntityList[EntityType.Npc] = {};
 
         setInterval(this.tick.bind(this), 200);
-        this.generateMonster(10);
     }
 
     tick() {
@@ -48,11 +47,7 @@ export class AreaService {
         let monsterList = this.mEntityList[EntityType.Monster];
 
         if( Object.keys(monsterList).length < 20) {
-            this.generateMonster(5);
-        }
-
-        for (let i in monsterList) {
-            monsterList[i].update();
+            this.generateMonster(1);
         }
     }
 
@@ -140,17 +135,21 @@ export class AreaService {
         return this.channel;
     }
 
-    // getAllEntities(): object {
-    //     return this.entities;
-    // }
-
     getAllEntitiesInfo(): any {
         let eInfo = [];
 
         for(let type in this.mEntityList) {
             let entityArray = this.mEntityList[type];
             for (let i in entityArray) {
-                eInfo.push(entityArray[i].getData());
+                let data = entityArray[i].getData();
+                let roleData = data as RoleData;
+                if(!roleData){
+                    if(roleData.mHp <= 0) {
+                        continue;
+                    }
+                }
+
+                eInfo.push(data);
             }
         }
 
@@ -165,7 +164,7 @@ export class AreaService {
         for (let i = 0; i < n; i++) {
 
             //let data: any = DataApi.getInstance().mCharacter.findById(2);
-            let m: Monster = new Monster({name: 'monster', x: RandomUtils.limit(-4, 4), y: 0.282, z: RandomUtils.limit(-3.5, -2), dirX: RandomUtils.limit(-1, 1), dirY: 0, dirZ: RandomUtils.limit(-1, 1)}, EntityType.Monster);
+            let m: Monster = new Monster({name: 'monster', x: RandomUtils.limit(-4, 4), y: 0.282, z: RandomUtils.limit(-3.5, -2), dirX: RandomUtils.limit(-1, 1), dirY: 0, dirZ: RandomUtils.limit(-1, 1), moveSpeed: 0.5, hp: 100});
             this.addEntity(m);
         }
     }

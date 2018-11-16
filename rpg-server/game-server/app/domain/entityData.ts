@@ -42,6 +42,8 @@ export class RoleData extends EntityData {
     mLevel: number = 0;
     mSkillList: Array<number>;
 
+    mTargetId: number = 0;
+
     constructor(data: any, type: EntityType) {
         super(data, type);
 

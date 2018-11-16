@@ -7,6 +7,7 @@ import * as path from 'path';
 import {UserSql} from '../../../mysql/userSql';
 import * as MathUtils from "../../../util/MathUtils";
 import {EntityType} from "../../../consts/consts";
+import {RoleData} from "../../../domain/entityData";
 
 let logger = getLogger('pinus', path.basename(__filename));
 
@@ -71,17 +72,19 @@ export class PlayerHandler {
             let entities = allEntities[type];
             for (let i in entities) {
                 let e = entities[i] as Entity;
-                let eData = e.getData();
+                let eData = e.getData() as RoleData;
                 let tPos = eData.mPos;
 
                 if(playerData.mInstId !== eData.mInstId){
                     if (MathUtils.IsPointInCircularSector(pos.x, pos.z, forward.x, forward.z, 0.4, MathUtils.getRadian(90)*0.5, tPos.x, tPos.z)) {
                         targets.push(eData.mInstId);
+                        eData.mTargetId = playerData.mInstId; // 设置怪物目标
+                        eData.mHp -= 10;
                     }
                 }
             }
         }
 
-        this.mAreaService.getChannel().pushMessage('onAttack', {skillId: msg.skillId, playerInstId: msg.playerInstId, targets: targets});
+        this.mAreaService.getChannel().pushMessage('onAttack', {skillId: msg.skillId, attackId: msg.playerInstId, targetIds: targets});
     }
 }
