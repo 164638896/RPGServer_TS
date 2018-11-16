@@ -5,9 +5,9 @@ import {AreaService} from '../../../services/areaService';
 import {getLogger} from 'pinus-logger';
 import * as path from 'path';
 import {UserSql} from '../../../mysql/userSql';
-import * as MathUtils from "../../../util/MathUtils";
 import {EntityType} from "../../../consts/consts";
 import {RoleData} from "../../../domain/entityData";
+import {MathUtils} from "../../../util/MathUtils";
 
 let logger = getLogger('pinus', path.basename(__filename));
 

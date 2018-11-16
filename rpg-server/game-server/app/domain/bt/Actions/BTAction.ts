@@ -1,6 +1,6 @@
 import {BTNode} from "../BTNode";
 import {BTResult} from "../BTConstants";
-import * as RandomUtils from "../../../util/RandomUtils";
+import {RandomUtils} from "../../../util/RandomUtils";
 
 enum BTActionStatus {
     Ready,
@@ -93,7 +93,7 @@ export class BTActionWaitRandom extends BTAction {
         super.Enter ();
 
         this.mStartTime = Date.now();
-        this.mInterval = RandomUtils.limit(this.mMillisecondsMin, this.mMillisecondsMax);
+        this.mInterval = RandomUtils.range(this.mMillisecondsMin, this.mMillisecondsMax);
     }
 
     protected Execute (): BTResult {

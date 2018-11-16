@@ -127,7 +127,7 @@ export class FollowAction extends BTAction {
                 x: this.mMonsterData.mPos.x,
                 y: this.mMonsterData.mPos.y,
                 z: this.mMonsterData.mPos.z
-            })
+            });
             return BTResult.Success;
         }
     }
@@ -187,7 +187,7 @@ export class RunAwayAction extends BTAction {
 
 export class MonsterAI {
     private mMonster: Monster;
-    private mMonsterData: MonsterData;
+    private readonly mMonsterData: MonsterData;
     private mRoot: BTSelector;
     private mAreaService: AreaService;
     private mChannel: Channel;
@@ -207,22 +207,24 @@ export class MonsterAI {
         this.mChannel = this.mAreaService.getChannel();
 
         let isDeadFun = () => {
-            if (this.mMonsterData.mHp <= 0) {
-                return true;
-            }
-            else {
-                return false;
-            }
+            return this.mMonsterData.mHp <= 0;
+            // if (this.mMonsterData.mHp <= 0) {
+            //     return true;
+            // }
+            // else {
+            //     return false;
+            // }
         };
 
         let targetFun = () => {
             let id: number = this.mMonsterData.mTargetId;
-            if (id) {
-                return true;
-            }
-            else{
-                return false;
-            }
+            return id > 0;
+            // if (id) {
+            //     return true;
+            // }
+            // else{
+            //     return false;
+            // }
         };
 
         let atkRangeFun = () =>

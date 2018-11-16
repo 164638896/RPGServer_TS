@@ -2,10 +2,8 @@ import {Channel} from 'pinus/lib/common/service/channelService';
 import {pinus} from 'pinus';
 import {Entity, Monster, Npc, Player} from '../domain/entity';
 import {EntityType} from '../consts/consts';
-import {DataApi} from "../util/dataApi";
-import {Vector3} from "../util/vector3";
-import * as RandomUtils from "../util/RandomUtils";
 import {MonsterData, NpcData, PlayerData, RoleData} from "../domain/entityData";
+import {RandomUtils} from "../util/RandomUtils";
 
 
 export class AreaService {
@@ -164,7 +162,7 @@ export class AreaService {
         for (let i = 0; i < n; i++) {
 
             //let data: any = DataApi.getInstance().mCharacter.findById(2);
-            let m: Monster = new Monster({name: 'monster', x: RandomUtils.limit(-4, 4), y: 0.282, z: RandomUtils.limit(-3.5, -2), dirX: RandomUtils.limit(-1, 1), dirY: 0, dirZ: RandomUtils.limit(-1, 1), moveSpeed: 0.5, hp: 100});
+            let m: Monster = new Monster({name: 'monster', x: RandomUtils.range(-4, 4), y: 0.282, z: RandomUtils.range(-3.5, -2), dirX: RandomUtils.range(-1, 1), dirY: 0, dirZ: RandomUtils.range(-1, 1), moveSpeed: 0.5, hp: 100});
             this.addEntity(m);
         }
     }
