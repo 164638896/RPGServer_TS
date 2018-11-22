@@ -38,7 +38,7 @@ export class PlayerHandler {
         return { code: 200, entities: this.mAreaService.getAllEntitiesInfo(), curPlayerInstId: player.getData().mInstId };
     }
 
-    async move(msg: {x: number, y: number, z: number}, session: BackendSession) {
+    async move(msg: {x: number, y: number, z: number, dX: number, dZ: number}, session: BackendSession) {
         let playerId = session.get('playerId');
         let player: Player = this.mAreaService.getPlayerByPlayerId(playerId, EntityType.Player) as Player;
         if(!player) {
@@ -46,7 +46,7 @@ export class PlayerHandler {
             return { code: 500, error: 'invalid player:' + playerId };
         }
 
-        player.move(msg.x, msg.y, msg.z);
+        player.move(msg.x, msg.y, msg.z, msg.dX, msg.dZ);
         let playerData = player.getData();
         let pos = playerData.mPos;
         this.mAreaService.getChannel().pushMessage('onMove', {InstId: playerData.mInstId, x: pos.x, y: pos.y, z: pos.z});
@@ -76,7 +76,7 @@ export class PlayerHandler {
                 let tPos = eData.mPos;
 
                 if(playerData.mInstId !== eData.mInstId){
-                    if (MathUtils.IsPointInCircularSector(pos.x, pos.z, forward.x, forward.z, 0.4, MathUtils.getRadian(90)*0.5, tPos.x, tPos.z)) {
+                    if (MathUtils.IsPointInCircularSector(pos.x, pos.z, forward.x, forward.z, 0.4, MathUtils.getRadian(120)*0.5, tPos.x, tPos.z)) {
                         targets.push(eData.mInstId);
                         eData.mTargetId = playerData.mInstId; // 设置怪物目标
                         eData.mHp -= 10;

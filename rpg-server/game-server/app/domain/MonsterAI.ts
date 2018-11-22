@@ -10,10 +10,11 @@ import {AreaService} from "../services/areaService";
 import {EntityType} from "../consts/consts";
 import {Vector3} from "../util/vector3";
 import {Channel} from "pinus/lib/common/service/channelService";
+import {RandomUtils} from "../util/RandomUtils";
 
 
 export class DealAction extends BTAction {
-    mMonsterData: MonsterData;
+    private mMonsterData: MonsterData;
     private mChannel: Channel;
 
     constructor(data: MonsterData, channel: Channel) {
@@ -33,7 +34,7 @@ export class DealAction extends BTAction {
 }
 
 export class ReviveAction extends BTAction {
-    mMonsterData: MonsterData;
+    private mMonsterData: MonsterData;
     private mChannel: Channel;
 
     constructor(data: MonsterData, channel: Channel) {
@@ -55,7 +56,7 @@ export class ReviveAction extends BTAction {
 }
 
 export class IdleAction extends BTAction {
-    mMonsterData: MonsterData;
+    private mMonsterData: MonsterData;
     private mChannel: Channel;
 
     constructor(data: MonsterData, channel: Channel) {
@@ -74,13 +75,15 @@ export class IdleAction extends BTAction {
 }
 
 export class PatrolAction extends BTAction {
-    mMonsterData: MonsterData;
+    private mMonsterData: MonsterData;
     private mChannel: Channel;
+    private mAreaService: AreaService;
 
-    constructor(data: MonsterData, channel: Channel) {
+    constructor(data: MonsterData, channel: Channel, areaService: AreaService) {
         super();
         this.mMonsterData = data;
         this.mChannel = channel;
+        this.mAreaService = areaService;
     }
 
     protected Enter() {
@@ -88,12 +91,39 @@ export class PatrolAction extends BTAction {
     }
 
     protected Execute(): BTResult {
+        // 移动
+        let newX, newZ;
+        if(Math.abs(this.mMonsterData.mPos.x - this.mMonsterData.mBornPoint.x) > 0.3) {
+            newX = this.mMonsterData.mBornPoint.x;
+        } else{
+            newX = this.mMonsterData.mPos.x + RandomUtils.range(-0.2,0.2);
+        }
+        if(Math.abs(this.mMonsterData.mPos.z - this.mMonsterData.mBornPoint.z) > 0.3) {
+            newZ = this.mMonsterData.mBornPoint.z;
+        }else{
+            newZ = this.mMonsterData.mPos.z + RandomUtils.range(-0.2,0.2);
+        }
+
+        let oldPos = this.mMonsterData.mPos.clone();
+        this.mMonsterData.mPos.set(newX,this.mMonsterData.mPos.y, newZ);
+
+        let dir = Vector3.sub(this.mMonsterData.mPos, oldPos);
+        dir.y = 0;
+        dir.normalize();
+        this.mMonsterData.mForward = dir;
+
+        this.mChannel.pushMessage('onMove', {
+            InstId: this.mMonsterData.mInstId,
+            x: this.mMonsterData.mPos.x,
+            y: this.mMonsterData.mPos.y,
+            z: this.mMonsterData.mPos.z
+        });
         return BTResult.Success;
     }
 }
 
 export class FollowAction extends BTAction {
-    mMonsterData: MonsterData;
+    private mMonsterData: MonsterData;
     private mChannel: Channel;
     private mAreaService: AreaService;
 
@@ -134,7 +164,7 @@ export class FollowAction extends BTAction {
 }
 
 export class AttackAction extends BTAction {
-    mMonsterData: MonsterData;
+    private mMonsterData: MonsterData;
     private mChannel: Channel;
     private mAreaService: AreaService;
 
@@ -167,7 +197,7 @@ export class AttackAction extends BTAction {
 }
 
 export class RunAwayAction extends BTAction {
-    mMonsterData: MonsterData;
+    private mMonsterData: MonsterData;
     private mChannel: Channel;
 
     constructor(data: MonsterData, channel: Channel) {
@@ -307,7 +337,7 @@ export class MonsterAI {
 
             // 攻击Action
             atkSeq.AddChild(new AttackAction(this.mMonsterData, this.mChannel, this.mAreaService));
-            atkSeq.AddChild(new BTActionWaitRandom(2.0, 3.0));
+            atkSeq.AddChild(new BTActionWaitRandom(2000, 3000));
 
             aliveSel.AddChild(atkSeq);
         }
@@ -316,10 +346,10 @@ export class MonsterAI {
         {
             //patrolSeq.AddChild(canMove);
             patrolSeq.AddChild(hasNoTarget);
-            patrolSeq.AddChild(new BTActionWaitRandom(1.0, 5.0));
+            patrolSeq.AddChild(new BTActionWaitRandom(3000, 10000));
 
             // 巡逻Action
-            patrolSeq.AddChild(new PatrolAction(this.mMonsterData, this.mChannel));
+            patrolSeq.AddChild(new PatrolAction(this.mMonsterData, this.mChannel, this.mAreaService));
 
             aliveSel.AddChild(patrolSeq);
         }

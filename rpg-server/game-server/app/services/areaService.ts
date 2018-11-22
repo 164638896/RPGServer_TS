@@ -4,6 +4,7 @@ import {Entity, Monster, Npc, Player} from '../domain/entity';
 import {EntityType} from '../consts/consts';
 import {MonsterData, NpcData, PlayerData, RoleData} from "../domain/entityData";
 import {RandomUtils} from "../util/RandomUtils";
+import {Vector3} from "../util/vector3";
 
 
 export class AreaService {
@@ -44,7 +45,7 @@ export class AreaService {
 
         let monsterList = this.mEntityList[EntityType.Monster];
 
-        if( Object.keys(monsterList).length < 20) {
+        if( Object.keys(monsterList).length < 10) {
             this.generateMonster(1);
         }
     }
@@ -162,7 +163,13 @@ export class AreaService {
         for (let i = 0; i < n; i++) {
 
             //let data: any = DataApi.getInstance().mCharacter.findById(2);
-            let m: Monster = new Monster({name: 'monster', x: RandomUtils.range(-4, 4), y: 0.282, z: RandomUtils.range(-3.5, -2), dirX: RandomUtils.range(-1, 1), dirY: 0, dirZ: RandomUtils.range(-1, 1), moveSpeed: 0.5, hp: 100});
+            let m: Monster = new Monster({
+                name: 'monster',
+                x: RandomUtils.range(-4, 4), y: 0.282, z: RandomUtils.range(-3.5, -2),
+                dirX: RandomUtils.range(-1, 1), dirY: 0, dirZ: RandomUtils.range(-1, 1),
+                moveSpeed: 0.5,
+                hp: 100,
+            });
             this.addEntity(m);
         }
     }

@@ -33,7 +33,7 @@ export class Handler {
             // return { code: 500, error: true };
             playerData = await UserSql.getInstance().createPlayerA(userData.id, msg.name, 210);
         }
-        console.log('playerData: ', playerData);
+        //console.log('playerData: ', playerData);
 
         session.set('playerName', playerData.name);
         session.set('playerId', playerData.id); // connector 只有 player id，没法绑定具体的Player实例Id，因为playerId 是在area服务器上创建的

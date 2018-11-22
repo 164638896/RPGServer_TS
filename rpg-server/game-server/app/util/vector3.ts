@@ -61,6 +61,18 @@ export class Vector3 {
         }
     }
 
+    cloneTo(v: Vector3) {
+        v.x = this.x;
+        v.y = this.y;
+        v.z = this.z;
+    }
+
+    clone() : Vector3{
+        let v = new Vector3(0,0,0);
+        this.cloneTo(v);
+        return v;
+    }
+
     // rotate (angle: number) {
     //     let x = this.x,
     //         y = this.y,
@@ -85,6 +97,13 @@ export class Vector3 {
         let x = value1.x - value2.x;
         let y = value1.y - value2.y;
         let z = value1.z - value2.z;
+        return new Vector3(x, y, z);
+    }
+
+    static add(value1: Vector3, value2: Vector3): Vector3 {
+        let x = value1.x + value2.x;
+        let y = value1.y + value2.y;
+        let z = value1.z + value2.z;
         return new Vector3(x, y, z);
     }
 }

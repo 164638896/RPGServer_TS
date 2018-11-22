@@ -28,7 +28,7 @@ export class BTSimpleParallel extends BTComposite {
         this.ResetRuningChildren();
     }
 
-    public Tick (): BTResult {
+    public Tick(): BTResult {
         if (this._primaryChild == null) {
             console.error("Primary Child not set!");
         }
@@ -49,7 +49,7 @@ export class BTSimpleParallel extends BTComposite {
     }
 
     public Clear() {
-        super.Clear ();
+        super.Clear();
 
         switch (this.clearOpt) {
             case BTClearOpt.Default:

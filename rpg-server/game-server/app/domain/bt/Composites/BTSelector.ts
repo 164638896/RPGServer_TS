@@ -6,7 +6,7 @@ export class BTSelector extends BTComposite {
     public _activeChildIndex: number = -1;
     public _previousSuccessChildIndex: number = -1;
 
-    public Tick (): BTResult {
+    public Tick(): BTResult {
         for (let i=0; i<this._children.length; i++) {
             let child: BTNode = this._children[i];
 
@@ -42,7 +42,7 @@ export class BTSelector extends BTComposite {
         return BTResult.Failed;
     }
 
-    public Clear () {
+    public Clear() {
         super.Clear();
 
         switch (this.clearOpt) {

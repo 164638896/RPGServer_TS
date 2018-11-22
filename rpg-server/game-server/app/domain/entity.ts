@@ -26,14 +26,14 @@ export class Entity extends EventEmitter {
 }
 
 export class Role extends Entity {
-    move(x: number, y: number, z: number) {
-        let oldPos = this.mEntityData.mPos;
+    move(x: number, y: number, z: number, dX: number, dZ: number) {
+        //let oldPos = this.mEntityData.mPos;
 
-        let fX = x - oldPos.x;
-        let fY = y - oldPos.y;
-        let fZ = z - oldPos.z;
+        // let fX = x - oldPos.x;
+        // let fY = y - oldPos.y;
+        // let fZ = z - oldPos.z;
 
-        this.mEntityData.setForward(fX, fY, fZ);
+        this.mEntityData.setForward(dX, 0, dZ);
         this.mEntityData.setPos(x, y, z);
     }
 }
@@ -53,8 +53,8 @@ export class Player extends Role {
         playerData.mFrontendId = frontendId;
     }
 
-    move(x: number, y: number, z: number) {
-        super.move(x, y, z);
+    move(x: number, y: number, z: number, dX: number, dZ: number) {
+        super.move(x, y, z, dX, dZ);
 
         UserSql.getInstance().updatePlayer(this, () => {
 

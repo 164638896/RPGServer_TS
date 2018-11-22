@@ -60,7 +60,7 @@ export class RoleData extends EntityData {
 
 export class PlayerData extends RoleData {
     uid: string; // 用户名Id，数据库用户表里的用户Id, 表示这个角色是哪个用户的
-    id: number; // playerId, connector 调用 area服务器时候需要用到这个Id，要通过 playerId 找到真正的InstId, playerId 服务器之间内部使用，给客户端使用的InstId
+    id: number;  // playerId, connector 调用 area服务器时候需要用到这个Id，要通过 playerId 找到真正的InstId, playerId 服务器之间内部使用，给客户端使用的InstId
     mFrontendId: FRONTENDID;
 
     mExp: number;
@@ -72,8 +72,11 @@ export class PlayerData extends RoleData {
 }
 
 export class MonsterData extends RoleData {
+    mBornPoint: Vector3;
+
     constructor(data: any) {
         super(data, EntityType.Monster);
+        this.mBornPoint = new Vector3(data.x, data.y, data.z);
     }
 }
 
