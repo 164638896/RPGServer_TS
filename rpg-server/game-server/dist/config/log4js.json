@@ -90,7 +90,7 @@
     "categories": {
         "default": {
             "appenders": [ "console", "con-log", "rpc-log", "forward-log", "rpc-debug", "crash-log", "admin-log", "pomelo", "pinus-admin", "pinus-rpc" ],
-            "level": "debug"
+            "level": "warn"
         }
     },
 

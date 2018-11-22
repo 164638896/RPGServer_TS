@@ -76,7 +76,7 @@ export class PlayerHandler {
                 let tPos = eData.mPos;
 
                 if(playerData.mInstId !== eData.mInstId){
-                    if (MathUtils.IsPointInCircularSector(pos.x, pos.z, forward.x, forward.z, 0.4, MathUtils.getRadian(120)*0.5, tPos.x, tPos.z)) {
+                    if (MathUtils.IsPointInCircularSector(pos.x, pos.z, forward.x, forward.z, 0.5, MathUtils.getRadian(120)*0.5, tPos.x, tPos.z)) {
                         targets.push(eData.mInstId);
                         eData.mTargetId = playerData.mInstId; // 设置怪物目标
                         eData.mHp -= 10;
