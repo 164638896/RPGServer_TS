@@ -28,7 +28,7 @@ export class DealAction extends BTAction {
         this.mChannel.pushMessage('onDead', {InstId: this.mMonsterData.mInstId});
     }
 
-    protected Execute(): BTResult {
+    protected Execute(dt: number): BTResult {
         return BTResult.Success;
     }
 }
@@ -47,10 +47,11 @@ export class ReviveAction extends BTAction {
         super.Enter();
         this.mMonsterData.mHp = 100;
         this.mMonsterData.mTargetId = 0;
+        this.mMonsterData.mPos = this.mMonsterData.mBornPoint;
         this.mChannel.pushMessage('onRevive', {entity: this.mMonsterData});
     }
 
-    protected Execute(): BTResult {
+    protected Execute(dt: number): BTResult {
         return BTResult.Success;
     }
 }
@@ -69,7 +70,7 @@ export class IdleAction extends BTAction {
         super.Enter();
     }
 
-    protected Execute(): BTResult {
+    protected Execute(dt: number): BTResult {
         return BTResult.Success;
     }
 }
@@ -90,22 +91,22 @@ export class PatrolAction extends BTAction {
         super.Enter();
     }
 
-    protected Execute(): BTResult {
+    protected Execute(dt: number): BTResult {
         // 移动
         let newX, newZ;
         if(Math.abs(this.mMonsterData.mPos.x - this.mMonsterData.mBornPoint.x) > 0.3) {
             newX = this.mMonsterData.mBornPoint.x;
         } else{
-            newX = this.mMonsterData.mPos.x + RandomUtils.range(-0.2,0.2);
+            newX = this.mMonsterData.mPos.x + RandomUtils.range(-0.3,0.3);
         }
         if(Math.abs(this.mMonsterData.mPos.z - this.mMonsterData.mBornPoint.z) > 0.3) {
             newZ = this.mMonsterData.mBornPoint.z;
         }else{
-            newZ = this.mMonsterData.mPos.z + RandomUtils.range(-0.2,0.2);
+            newZ = this.mMonsterData.mPos.z + RandomUtils.range(-0.3,0.3);
         }
 
         let oldPos = this.mMonsterData.mPos.clone();
-        this.mMonsterData.mPos.set(newX,this.mMonsterData.mPos.y, newZ);
+        this.mMonsterData.mPos.set(newX, this.mMonsterData.mPos.y, newZ);
 
         let dir = Vector3.sub(this.mMonsterData.mPos, oldPos);
         dir.y = 0;
@@ -138,19 +139,27 @@ export class FollowAction extends BTAction {
         super.Enter();
     }
 
-    protected Execute(): BTResult {
+    protected Execute(dt: number): BTResult {
         // 移动
         let player: Player = this.mAreaService.getEntity(this.mMonsterData.mTargetId, EntityType.Player) as Player;
         if(player) {
 
             let dir: Vector3 = Vector3.sub(player.getData().mPos, this.mMonsterData.mPos);
-            dir.y = 0;
-            dir.normalize();
-            this.mMonsterData.mForward = dir;
+            this.mMonsterData.setForward(dir.x, 0, dir.z);
 
-            dir.x *= 0.2;
-            dir.z *= 0.2;
-            this.mMonsterData.mPos.add(dir);
+            let dist = Vector3.distance(player.getData().mPos, this.mMonsterData.mPos);
+            if(dist > 0.3) {
+                dist -= 0.3;
+            }
+
+            let maxStep = this.mMonsterData.mMoveSpeed * dt * 0.001; // 乘以经过的时间
+            if(dist > maxStep) {
+                dist = maxStep;
+            }
+
+            let addPos = this.mMonsterData.mForward.clone();
+            addPos.scale(dist);
+            this.mMonsterData.mPos.add(addPos);
 
             this.mChannel.pushMessage('onMove', {
                 InstId: this.mMonsterData.mInstId,
@@ -191,7 +200,7 @@ export class AttackAction extends BTAction {
         }
     }
 
-    protected Execute(): BTResult {
+    protected Execute(dt: number): BTResult {
         return BTResult.Success;
     }
 }
@@ -210,7 +219,7 @@ export class RunAwayAction extends BTAction {
         super.Enter();
     }
 
-    protected Execute(): BTResult {
+    protected Execute(dt: number): BTResult {
         return BTResult.Success;
     }
 }
@@ -228,8 +237,8 @@ export class MonsterAI {
         this.init();
     }
 
-    update() {
-        this.mRoot.Tick();
+    update(dt: number) {
+        this.mRoot.Tick(dt);
     }
 
     init() {
@@ -336,8 +345,9 @@ export class MonsterAI {
             //atkSeq.AddChild(HPMore);
 
             // 攻击Action
+            atkSeq.AddChild(new BTActionWait(1000));
             atkSeq.AddChild(new AttackAction(this.mMonsterData, this.mChannel, this.mAreaService));
-            atkSeq.AddChild(new BTActionWaitRandom(2000, 3000));
+            atkSeq.AddChild(new BTActionWaitRandom(1000, 3000));
 
             aliveSel.AddChild(atkSeq);
         }
@@ -346,7 +356,7 @@ export class MonsterAI {
         {
             //patrolSeq.AddChild(canMove);
             patrolSeq.AddChild(hasNoTarget);
-            patrolSeq.AddChild(new BTActionWaitRandom(3000, 10000));
+            patrolSeq.AddChild(new BTActionWaitRandom(5000, 10000));
 
             // 巡逻Action
             patrolSeq.AddChild(new PatrolAction(this.mMonsterData, this.mChannel, this.mAreaService));

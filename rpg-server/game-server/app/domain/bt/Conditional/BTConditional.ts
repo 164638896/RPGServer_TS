@@ -2,7 +2,7 @@ import {BTNode} from "../BTNode";
 import {BTResult} from "../BTConstants";
 
 export class BTConditional extends BTNode {
-    public Tick(): BTResult {
+    public Tick(dt: number): BTResult {
         if (this.Check()) {
             return BTResult.Success;
         }

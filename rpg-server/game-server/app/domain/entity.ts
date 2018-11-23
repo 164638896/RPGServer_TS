@@ -70,14 +70,17 @@ export class Npc extends Role {
 
 export class Monster extends Role {
     private mAi : MonsterAI;
-
+    private lastTime: number;
     constructor(data: any) {
         super(data, EntityType.Monster);
+        this.lastTime = Date.now();
         this.mAi = new MonsterAI(this);
-        setInterval(this.tick.bind(this), 1000);
+        setInterval(this.tick.bind(this), 200);
     }
 
     tick() {
-        this.mAi.update();
+        let dt = Date.now() - this.lastTime;
+        this.lastTime = Date.now();
+        this.mAi.update(dt);
     }
 }

@@ -12,7 +12,7 @@ export abstract class BTNode {
         }
     }
 
-    public Tick (): BTResult {
+    public Tick (dt: number): BTResult {
         return BTResult.Failed;
     }
 
@@ -20,7 +20,7 @@ export abstract class BTNode {
         this.isRunning = false;
 
         if (this.clearTick != null) {
-            this.clearTick.Tick();
+            this.clearTick.Tick(0);
         }
     }
 }

@@ -10,7 +10,7 @@ enum BTActionStatus {
 export class BTAction extends BTNode {
     private _status: BTActionStatus = BTActionStatus.Ready;
 
-    public Tick(): BTResult {
+    public Tick(dt: number): BTResult {
         let tickResult:BTResult = BTResult.Success;
 
         if (this._status == BTActionStatus.Ready) {
@@ -19,7 +19,7 @@ export class BTAction extends BTNode {
         }
 
         if (this._status == BTActionStatus.Running) {
-            tickResult = this.Execute();
+            tickResult = this.Execute(dt);
             if (tickResult != BTResult.Running) {
                 this.Exit();
                 this._status = BTActionStatus.Ready;
@@ -45,7 +45,7 @@ export class BTAction extends BTNode {
 
     }
 
-    protected Execute() {return BTResult.Failed;}
+    protected Execute(dt: number) {return BTResult.Failed;}
 
 
     protected Exit() {

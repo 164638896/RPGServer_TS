@@ -28,15 +28,15 @@ export class BTSimpleParallel extends BTComposite {
         this.ResetRuningChildren();
     }
 
-    public Tick(): BTResult {
+    public Tick(dt: number): BTResult {
         if (this._primaryChild == null) {
             console.error("Primary Child not set!");
         }
 
-        let primaryChildResult: BTResult = this._primaryChild.Tick();
+        let primaryChildResult: BTResult = this._primaryChild.Tick(dt);
 
         if (primaryChildResult == BTResult.Running) {
-            this.RunBackground();
+            this.RunBackground(dt);
             this.isRunning = true;
             return BTResult.Running;
         }
@@ -90,10 +90,10 @@ export class BTSimpleParallel extends BTComposite {
 
     }
 
-    private RunBackground() {
+    private RunBackground(dt: number) {
         for(let i = this._runningChildren.length - 1; i >= 0; --i) {
             let child : BTNode= this._runningChildren[i];
-            let result: BTResult = child.Tick();
+            let result: BTResult = child.Tick(dt);
 
             if (result != BTResult.Running) {
                 child.Clear();

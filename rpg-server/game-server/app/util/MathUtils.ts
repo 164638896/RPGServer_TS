@@ -26,12 +26,12 @@ export class MathUtils {
         return th < theta;
     }
 
-//弧度制转换为角度值
+    //弧度制转换为角度值
     static getAngle(radian: number): number {
         return 180 * radian / Math.PI;
     }
 
-//角度值转换为弧度制
+    //角度值转换为弧度制
     static getRadian(angle: number): number {
         return angle / 180 * Math.PI;
     }

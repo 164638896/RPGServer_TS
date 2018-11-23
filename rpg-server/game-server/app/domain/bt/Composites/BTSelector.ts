@@ -6,11 +6,11 @@ export class BTSelector extends BTComposite {
     public _activeChildIndex: number = -1;
     public _previousSuccessChildIndex: number = -1;
 
-    public Tick(): BTResult {
+    public Tick(dt: number): BTResult {
         for (let i=0; i<this._children.length; i++) {
             let child: BTNode = this._children[i];
 
-            switch (child.Tick()) {
+            switch (child.Tick(dt)) {
                 case BTResult.Running:
                     if (this._activeChildIndex != i && this._activeChildIndex != -1) {
                         this._children[this._activeChildIndex].Clear();

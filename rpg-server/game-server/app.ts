@@ -23,7 +23,7 @@ app.configure('production|development', 'connector', function () {
     app.set('connectorConfig',
         {
             connector: pinus.connectors.hybridconnector,
-            heartbeat: 30,
+            heartbeat: 60,
             useDict: false,
             useProtobuf: false
         });

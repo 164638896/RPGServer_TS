@@ -5,8 +5,8 @@ import {BTNode} from "../BTNode";
 export class BTSequence extends BTComposite {
     private _activeChildIndex: number;
 
-    public Tick(): BTResult {
-        return this.TickFromActiveChild();
+    public Tick(dt: number): BTResult {
+        return this.TickFromActiveChild(dt);
     }
 
     public Clear() {
@@ -61,7 +61,7 @@ export class BTSequence extends BTComposite {
         this._activeChildIndex = -1;
     }
 
-    private TickFromActiveChild(): BTResult {
+    private TickFromActiveChild(dt: number): BTResult {
         if (this._activeChildIndex == -1) {
             this._activeChildIndex = 0;
         }
@@ -69,7 +69,7 @@ export class BTSequence extends BTComposite {
         for (; this._activeChildIndex < this._children.length; this._activeChildIndex++) {
             let activeChild: BTNode = this._children[this._activeChildIndex];
 
-            switch (activeChild.Tick()) {
+            switch (activeChild.Tick(dt)) {
                 case BTResult.Running:
                     this.isRunning = true;
                     return BTResult.Running;
