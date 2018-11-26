@@ -47,7 +47,7 @@ export class ReviveAction extends BTAction {
         super.Enter();
         this.mMonsterData.mHp = 100;
         this.mMonsterData.mTargetId = 0;
-        this.mMonsterData.mPos = this.mMonsterData.mBornPoint;
+        this.mMonsterData.mBornPoint.cloneTo(this.mMonsterData.mPos);
         this.mChannel.pushMessage('onRevive', {entity: this.mMonsterData});
     }
 
@@ -94,15 +94,15 @@ export class PatrolAction extends BTAction {
     protected Execute(dt: number): BTResult {
         // 移动
         let newX, newZ;
-        if(Math.abs(this.mMonsterData.mPos.x - this.mMonsterData.mBornPoint.x) > 0.3) {
+        if(Math.abs(this.mMonsterData.mPos.x - this.mMonsterData.mBornPoint.x) > 0.1) {
             newX = this.mMonsterData.mBornPoint.x;
         } else{
-            newX = this.mMonsterData.mPos.x + RandomUtils.range(-0.3,0.3);
+            newX = this.mMonsterData.mPos.x + RandomUtils.range(-0.2,0.2);
         }
-        if(Math.abs(this.mMonsterData.mPos.z - this.mMonsterData.mBornPoint.z) > 0.3) {
+        if(Math.abs(this.mMonsterData.mPos.z - this.mMonsterData.mBornPoint.z) > 0.1) {
             newZ = this.mMonsterData.mBornPoint.z;
         }else{
-            newZ = this.mMonsterData.mPos.z + RandomUtils.range(-0.3,0.3);
+            newZ = this.mMonsterData.mPos.z + RandomUtils.range(-0.2,0.2);
         }
 
         let oldPos = this.mMonsterData.mPos.clone();

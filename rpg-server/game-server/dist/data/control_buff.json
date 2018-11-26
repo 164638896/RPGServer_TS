@@ -1,0 +1,8 @@
+[
+[0],
+["类型Id","Buff名","持续时间","清除buff","行为buff开关","能否移动buff开关","伤害buff开关","能否选中Buff开关"],
+["id","name","duration","clear_buff","enableb_ehavior","enable_move","enable_hurt","enable_select"],
+["","","","","","","",""],
+[1,"不可切换,不可选中",1000,0,1,0,1,0],
+[2,"不可选中状态",1000,0,1,1,1,0]
+]

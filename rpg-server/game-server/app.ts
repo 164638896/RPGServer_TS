@@ -2,7 +2,8 @@ import { pinus } from 'pinus';
 import { preload } from './preload';
 import {AreaService} from './app/services/areaService';
 import {MysqlMgr} from './app/mysql/mysqlMgr';
-import {DataApi} from './app/util/dataApi';
+import {AreaServerLoader} from './app/config/ServerLoader';
+import ConfigLoader from './app/config/ConfigLoader';
 
 
 /**
@@ -58,8 +59,10 @@ app.configure('production|development', function () {
 // Configure database
 app.configure('production|development', 'area|auth|connector|master', function() {
     app.set('dbclient', new MysqlMgr(app));
+});
 
-    DataApi.getInstance().init();
+app.configure('production|development', 'area|connector', function() {
+    ConfigLoader.instance.loadAllConfig(new AreaServerLoader(), null);
 });
 
 
