@@ -64,6 +64,7 @@ export class PlayerData extends RoleData {
     mFrontendId: FRONTENDID;
 
     mExp: number;
+
     constructor(data: any) {
         super(data, EntityType.Player);
         this.uid = data.userId;

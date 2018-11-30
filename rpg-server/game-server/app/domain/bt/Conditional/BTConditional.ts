@@ -17,7 +17,7 @@ export class BTConditional extends BTNode {
 }
 
 export class BaseCondiction extends BTConditional {
-    protected externalFunc : Function;
+    protected externalFunc: Function;
 }
 
 export class Precondition extends BaseCondiction {
@@ -27,7 +27,7 @@ export class Precondition extends BaseCondiction {
         this.name = nodeName;
     }
 
-    public Check() :boolean {
+    public Check(): boolean {
         if (this.externalFunc != null) return this.externalFunc();
         else return false;
     }

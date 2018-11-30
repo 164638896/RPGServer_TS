@@ -7,7 +7,7 @@ export class BTSelector extends BTComposite {
     public _previousSuccessChildIndex: number = -1;
 
     public Tick(dt: number): BTResult {
-        for (let i=0; i<this._children.length; i++) {
+        for (let i = 0; i < this._children.length; i++) {
             let child: BTNode = this._children[i];
 
             switch (child.Tick(dt)) {
@@ -53,10 +53,10 @@ export class BTSelector extends BTComposite {
                 break;
 
             case BTClearOpt.Selected:
-                for(let i in this._selectedChildrenForClear) {
+                for (let i in this._selectedChildrenForClear) {
                     let child = this._selectedChildrenForClear[i];
                     let index: number = this._children.indexOf(child);
-                    if(index > this._previousSuccessChildIndex){
+                    if (index > this._previousSuccessChildIndex) {
                         child.Clear();
                     }
                 }
@@ -72,7 +72,7 @@ export class BTSelector extends BTComposite {
                 }
 
                 let split1: number = Math.max(this._activeChildIndex, this._previousSuccessChildIndex);
-                for(let i in this._selectedChildrenForClear){
+                for (let i in this._selectedChildrenForClear) {
                     let child = this._selectedChildrenForClear[i];
                     let index: number = this._children.indexOf(child);
                     if (index > split1) {
@@ -83,8 +83,8 @@ export class BTSelector extends BTComposite {
                 break;
 
             case BTClearOpt.All:
-                let split2: number = Math.max(this._activeChildIndex-1, this._previousSuccessChildIndex);
-                for(let i in this._children) {
+                let split2: number = Math.max(this._activeChildIndex - 1, this._previousSuccessChildIndex);
+                for (let i in this._children) {
                     let child = this._children[i];
                     let index: number = this._children.indexOf(child);
                     if (index > split2) {

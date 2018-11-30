@@ -1,7 +1,7 @@
 export class Vector3 {
-    static ZERO = new Vector3(0.0,0.0,0.0);
-    static ONE = new Vector3(1.0,1.0,1.0);
-    static Up = new Vector3(0,1,0);
+    static ZERO = new Vector3(0.0, 0.0, 0.0);
+    static ONE = new Vector3(1.0, 1.0, 1.0);
+    static Up = new Vector3(0, 1, 0);
 
     x: number;
     y: number;
@@ -31,7 +31,7 @@ export class Vector3 {
         this.z += v.z;
     }
 
-    sub(v: Vector3){
+    sub(v: Vector3) {
         this.x -= v.x;
         this.y -= v.y;
         this.z -= v.z;
@@ -67,8 +67,8 @@ export class Vector3 {
         v.z = this.z;
     }
 
-    clone() : Vector3{
-        let v = new Vector3(0,0,0);
+    clone(): Vector3 {
+        let v = new Vector3(0, 0, 0);
         this.cloneTo(v);
         return v;
     }

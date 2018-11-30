@@ -11,7 +11,7 @@ export class BTComposite extends BTNode {
     public Activate() {
         super.Activate();
 
-        for(let i in this._children) {
+        for (let i in this._children) {
             this._children[i].Activate();
         }
     }
@@ -28,9 +28,9 @@ export class BTComposite extends BTNode {
 
     public RemoveChild(node: BTNode) {
         let index = this._children.indexOf(node);
-        this._children.splice(index,1);
+        this._children.splice(index, 1);
 
         let index1 = this._selectedChildrenForClear.indexOf(node);
-        this._selectedChildrenForClear.splice(index1,1);
+        this._selectedChildrenForClear.splice(index1, 1);
     }
 }

@@ -1,7 +1,8 @@
 import {Application} from 'pinus';
 import {dispatch} from '../../../util/dispatcher';
-import { getLogger } from 'pinus-logger';
+import {getLogger} from 'pinus-logger';
 import * as path from 'path';
+
 let logger = getLogger('pinus', path.basename(__filename));
 
 export default function (app: Application) {
@@ -16,23 +17,23 @@ export class GateHandler {
     async queryEntry(msg: { uid: string }) {
 
         let uid = msg.uid;
-        if(!uid) {
+        if (!uid) {
             logger.warn('uid is null');
-            return { code: 500, error: true };
+            return {code: 500, error: true};
         }
 
         let connectors = this.app.getServersByType('connector');
-        if(!connectors || connectors.length === 0) {
+        if (!connectors || connectors.length === 0) {
             logger.warn('connectors is null');
-            return { code: 500, error: true };
+            return {code: 500, error: true};
         }
 
         let res = dispatch(uid, connectors);
-        if(!res) {
+        if (!res) {
             logger.warn('Search server failed');
-            return { code: 500, error: true };
+            return {code: 500, error: true};
         }
 
-        return { code: 200, host: res.clientHost, port: res.clientPort };
+        return {code: 200, host: res.clientHost, port: res.clientPort};
     }
 }

@@ -20,10 +20,10 @@ export class BTSequence extends BTComposite {
                 break;
 
             case BTClearOpt.Selected:
-                for(let i in this._selectedChildrenForClear) {
+                for (let i in this._selectedChildrenForClear) {
                     let child = this._selectedChildrenForClear[i];
                     let index = this._children.indexOf(child);
-                    if(index >= this._activeChildIndex) {
+                    if (index >= this._activeChildIndex) {
                         child.Clear();
                     }
                 }
@@ -33,12 +33,12 @@ export class BTSequence extends BTComposite {
             case BTClearOpt.DefaultAndSelected:
                 if (this._activeChildIndex != -1) {
                     let activeChild: BTNode = this._children[this._activeChildIndex];
-                    if(this._selectedChildrenForClear.indexOf(activeChild) < 0) {
+                    if (this._selectedChildrenForClear.indexOf(activeChild) < 0) {
                         activeChild.Clear();
                     }
                 }
 
-                for(let i in this._selectedChildrenForClear) {
+                for (let i in this._selectedChildrenForClear) {
                     let child = this._selectedChildrenForClear[i];
                     let index = this._children.indexOf(child);
                     if (index >= this._activeChildIndex) {

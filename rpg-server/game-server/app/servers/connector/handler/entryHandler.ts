@@ -1,7 +1,8 @@
 import {Application, FrontendSession, pinus} from 'pinus';
-import { getLogger } from 'pinus-logger';
+import {getLogger} from 'pinus-logger';
 import * as path from 'path';
 import {UserSql} from '../../../mysql/userSql';
+
 let logger = getLogger('pinus', path.basename(__filename));
 
 export default function (app: Application) {
@@ -19,7 +20,7 @@ export class Handler {
     async entry(msg: { name: string }, session: FrontendSession) {
 
         let userData: any = await UserSql.getInstance().getUserByNameA(msg.name);
-        if(!userData) {
+        if (!userData) {
             // logger.error('userData is null');
             // return { code: 500, error: true };
             userData = await UserSql.getInstance().createUserA(msg.name, '', '');
@@ -28,7 +29,7 @@ export class Handler {
         await session.abind(userData.id);
 
         let playerData: any = await UserSql.getInstance().getPlayersByUidA(userData.id);
-        if(!playerData) {
+        if (!playerData) {
             // logger.error('playerData is null');
             // return { code: 500, error: true };
             playerData = await UserSql.getInstance().createPlayerA(userData.id, msg.name, 210);
@@ -43,7 +44,7 @@ export class Handler {
 
         });
 
-        return { code: 200, playerId: playerData.id };
+        return {code: 200, playerId: playerData.id};
     }
 
     onUserLeave(session: FrontendSession) {

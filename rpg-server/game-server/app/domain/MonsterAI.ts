@@ -94,15 +94,15 @@ export class PatrolAction extends BTAction {
     protected Execute(dt: number): BTResult {
         // 移动
         let newX, newZ;
-        if(Math.abs(this.mMonsterData.mPos.x - this.mMonsterData.mBornPoint.x) > 0.1) {
+        if (Math.abs(this.mMonsterData.mPos.x - this.mMonsterData.mBornPoint.x) > 0.1) {
             newX = this.mMonsterData.mBornPoint.x;
-        } else{
-            newX = this.mMonsterData.mPos.x + RandomUtils.range(-0.2,0.2);
+        } else {
+            newX = this.mMonsterData.mPos.x + RandomUtils.range(-0.2, 0.2);
         }
-        if(Math.abs(this.mMonsterData.mPos.z - this.mMonsterData.mBornPoint.z) > 0.1) {
+        if (Math.abs(this.mMonsterData.mPos.z - this.mMonsterData.mBornPoint.z) > 0.1) {
             newZ = this.mMonsterData.mBornPoint.z;
-        }else{
-            newZ = this.mMonsterData.mPos.z + RandomUtils.range(-0.2,0.2);
+        } else {
+            newZ = this.mMonsterData.mPos.z + RandomUtils.range(-0.2, 0.2);
         }
 
         let oldPos = this.mMonsterData.mPos.clone();
@@ -142,18 +142,18 @@ export class FollowAction extends BTAction {
     protected Execute(dt: number): BTResult {
         // 移动
         let player: Player = this.mAreaService.getEntity(this.mMonsterData.mTargetId, EntityType.Player) as Player;
-        if(player) {
+        if (player) {
 
             let dir: Vector3 = Vector3.sub(player.getData().mPos, this.mMonsterData.mPos);
             this.mMonsterData.setForward(dir.x, 0, dir.z);
 
             let dist = Vector3.distance(player.getData().mPos, this.mMonsterData.mPos);
-            if(dist > 0.3) {
+            if (dist > 0.3) {
                 dist -= 0.3;
             }
 
             let maxStep = this.mMonsterData.mMoveSpeed * dt * 0.001; // 乘以经过的时间
-            if(dist > maxStep) {
+            if (dist > maxStep) {
                 dist = maxStep;
             }
 
@@ -188,7 +188,7 @@ export class AttackAction extends BTAction {
         super.Enter();
 
         let player: Player = this.mAreaService.getEntity(this.mMonsterData.mTargetId, EntityType.Player) as Player;
-        if(player) {
+        if (player) {
             let dir: Vector3 = Vector3.sub(player.getData().mPos, this.mMonsterData.mPos);
             dir.y = 0;
             dir.normalize();
@@ -196,7 +196,13 @@ export class AttackAction extends BTAction {
 
             let targets = [];
             targets.push(this.mMonsterData.mTargetId);
-            this.mChannel.pushMessage('onAttack', {skillId: 1, dX: dir.x, dZ: dir.z, attackId: this.mMonsterData.mInstId, targetIds: targets});
+            this.mChannel.pushMessage('onAttack', {
+                skillId: 1,
+                dX: dir.x,
+                dZ: dir.z,
+                attackId: this.mMonsterData.mInstId,
+                targetIds: targets
+            });
         }
     }
 
@@ -266,23 +272,21 @@ export class MonsterAI {
             // }
         };
 
-        let atkRangeFun = () =>
-        {
+        let atkRangeFun = () => {
             let id: number = this.mMonsterData.mTargetId;
             if (id) {
 
                 let player: Player = this.mAreaService.getEntity(id, EntityType.Player) as Player;
-                if(player)
-                {
+                if (player) {
                     let dis = Vector3.distance(player.getData().mPos, this.mMonsterData.mPos);
-                    if(dis <= 0.5){
+                    if (dis <= 0.5) {
                         return true;
                     }
-                    else if(dis > 5) {
+                    else if (dis > 5) {
                         this.mMonsterData.mTargetId = 0;
                     }
                 }
-                else{
+                else {
                     this.mMonsterData.mTargetId = 0;
                 }
             }
@@ -332,12 +336,12 @@ export class MonsterAI {
             //followSubtree.AddChild(HPMore);
 
             // 追击Action
-            followSubtree.AddChild(new FollowAction(this.mMonsterData,  this.mChannel, this.mAreaService));
+            followSubtree.AddChild(new FollowAction(this.mMonsterData, this.mChannel, this.mAreaService));
 
             aliveSel.AddChild(followSubtree);
         }
 
-        let atkSeq: BTSequence= new BTSequence();
+        let atkSeq: BTSequence = new BTSequence();
         {
             //atkSeq.AddChild(canAtk);
             atkSeq.AddChild(hasTarget);

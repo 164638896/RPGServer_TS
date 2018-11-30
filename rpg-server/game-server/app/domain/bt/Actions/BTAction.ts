@@ -11,7 +11,7 @@ export class BTAction extends BTNode {
     private _status: BTActionStatus = BTActionStatus.Ready;
 
     public Tick(dt: number): BTResult {
-        let tickResult:BTResult = BTResult.Success;
+        let tickResult: BTResult = BTResult.Success;
 
         if (this._status == BTActionStatus.Ready) {
             this.Enter();
@@ -45,7 +45,9 @@ export class BTAction extends BTNode {
 
     }
 
-    protected Execute(dt: number) {return BTResult.Failed;}
+    protected Execute(dt: number) {
+        return BTResult.Failed;
+    }
 
 
     protected Exit() {
@@ -57,7 +59,7 @@ export class BTActionWait extends BTAction {
     private mStartTime: number;
     public mMilliseconds: number;
 
-    constructor (milliseconds: number) {
+    constructor(milliseconds: number) {
         super();
         this.mMilliseconds = milliseconds;
     }
@@ -83,7 +85,7 @@ export class BTActionWaitRandom extends BTAction {
     public mMillisecondsMin: number;
     public mMillisecondsMax: number;
 
-    constructor (millisecondsMin: number, millisecondsMax: number) {
+    constructor(millisecondsMin: number, millisecondsMax: number) {
         super();
         this.mMillisecondsMin = millisecondsMin;
         this.mMillisecondsMax = millisecondsMax;

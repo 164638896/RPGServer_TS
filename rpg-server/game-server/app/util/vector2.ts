@@ -1,6 +1,6 @@
 export class Vector2 {
-    static ZERO = new Vector2(0.0,0.0);
-    static ONE = new Vector2(1.0,1.0);
+    static ZERO = new Vector2(0.0, 0.0);
+    static ONE = new Vector2(1.0, 1.0);
 
     x: number;
     y: number;
@@ -20,11 +20,11 @@ export class Vector2 {
         this.y += v.y;
     }
 
-    sub(v: Vector2){
+    sub(v: Vector2) {
         this.x -= v.x;
         this.y -= v.y;
     }
-    
+
     negate() {
         this.x = -this.x;
         this.y = -this.y;
@@ -47,7 +47,7 @@ export class Vector2 {
         }
     }
 
-    rotate (angle: number) {
+    rotate(angle: number) {
         let x = this.x,
             y = this.y,
             cosVal = Math.cos(angle),
@@ -55,6 +55,7 @@ export class Vector2 {
         this.x = x * cosVal - y * sinVal;
         this.y = x * sinVal + y * cosVal;
     }
+
     //调试
     toString() {
         return '(' + this.x.toFixed(3) + ',' + this.y.toFixed(3) + ')';

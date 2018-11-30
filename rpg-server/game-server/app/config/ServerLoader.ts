@@ -8,7 +8,7 @@ export class AreaServerLoader extends ILoader {
     load(caller: any, complete?: Function, progress?: Function) {
         for (const name of ALL_CONFIG_FILES) {
             let url = '../../data/' + name;
-            this.mOriginalData[name] =  require(url);
+            this.mOriginalData[name] = require(url);
         }
     }
 

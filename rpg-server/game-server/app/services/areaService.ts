@@ -45,7 +45,7 @@ export class AreaService {
 
         let monsterList = this.mEntityList[EntityType.Monster];
 
-        if( Object.keys(monsterList).length < 10) {
+        if (Object.keys(monsterList).length < 10) {
             this.generateMonster(1);
         }
     }
@@ -56,7 +56,7 @@ export class AreaService {
         }
 
         let data = e.getData();
-        if(data.mType === EntityType.Player) {
+        if (data.mType === EntityType.Player) {
             let playerData = data as PlayerData;
             this.getChannel().add(playerData.uid, playerData.mFrontendId);
 
@@ -66,11 +66,11 @@ export class AreaService {
             this.playerIds[playerData.id] = playerData.mInstId;
             this.mEntityList[EntityType.Player][playerData.mInstId] = e;
         }
-        else if(data.mType === EntityType.Monster) {
+        else if (data.mType === EntityType.Monster) {
             let monsterData = data as MonsterData;
             this.mEntityList[EntityType.Monster][monsterData.mInstId] = e;
         }
-        else if(data.mType === EntityType.Npc) {
+        else if (data.mType === EntityType.Npc) {
             let npcData = data as NpcData;
             this.mEntityList[EntityType.Npc][npcData.mInstId] = e;
         }
@@ -81,14 +81,14 @@ export class AreaService {
 
     removeEntity(InstId: number, type: EntityType) {
 
-       let e = this.mEntityList[type][InstId];
+        let e = this.mEntityList[type][InstId];
         if (!e) {
             return true;
         }
 
         let data = e.getData();
 
-        if(data.mType === EntityType.Player) {
+        if (data.mType === EntityType.Player) {
             let playerData = data as PlayerData;
             let channel = this.getChannel();
             channel.leave(playerData.uid, playerData.mFrontendId);
@@ -103,8 +103,7 @@ export class AreaService {
     getEntity(InstId: number, type: EntityType): Entity {
 
         let e = this.mEntityList[type][InstId];
-        if(!e)
-        {
+        if (!e) {
             console.log("entiity is null type =", type, "InstId = ", InstId);
             return;
         }
@@ -121,7 +120,7 @@ export class AreaService {
         return this.mEntityList[type];
     }
 
-    getAllEntities () : object{
+    getAllEntities(): object {
         return this.mEntityList;
     }
 
@@ -137,13 +136,13 @@ export class AreaService {
     getAllEntitiesInfo(): any {
         let eInfo = [];
 
-        for(let type in this.mEntityList) {
+        for (let type in this.mEntityList) {
             let entityArray = this.mEntityList[type];
             for (let i in entityArray) {
                 let data = entityArray[i].getData();
                 let roleData = data as RoleData;
-                if(!roleData){
-                    if(roleData.mHp <= 0) {
+                if (!roleData) {
+                    if (roleData.mHp <= 0) {
                         continue;
                     }
                 }

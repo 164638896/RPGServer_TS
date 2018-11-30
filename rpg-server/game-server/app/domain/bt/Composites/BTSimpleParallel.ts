@@ -3,11 +3,11 @@ import {BTClearOpt, BTResult} from "../BTConstants";
 import {BTNode} from "../BTNode";
 
 export class BTSimpleParallel extends BTComposite {
-    private _primaryChild : BTNode;
+    private _primaryChild: BTNode;
     private _runningChildren = new Array<BTNode>();
     private _shouldClearPrimaryChild: boolean = true;
 
-    public SetPrimaryChild (node:BTNode, selectForClear:boolean = false) {
+    public SetPrimaryChild(node: BTNode, selectForClear: boolean = false) {
         if (this._primaryChild != null) {
             //selectedChildrenForClear.Remove(this._primaryChild);
             let index = this._selectedChildrenForClear.indexOf(this._primaryChild);
@@ -22,7 +22,7 @@ export class BTSimpleParallel extends BTComposite {
     }
 
     public Activate() {
-        super.Activate ();
+        super.Activate();
 
         this._primaryChild.Activate();
         this.ResetRuningChildren();
@@ -58,7 +58,7 @@ export class BTSimpleParallel extends BTComposite {
                 if (this._shouldClearPrimaryChild) {
                     this._primaryChild.Clear();
                 }
-                for(let i in this._runningChildren) {
+                for (let i in this._runningChildren) {
                     let child: BTNode = this._runningChildren[i];
                     child.Clear();
                 }
@@ -67,7 +67,7 @@ export class BTSimpleParallel extends BTComposite {
 
             case BTClearOpt.Selected:
 
-                for(let i in this._selectedChildrenForClear) {
+                for (let i in this._selectedChildrenForClear) {
                     let child: BTNode = this._selectedChildrenForClear[i];
                     if ((this._shouldClearPrimaryChild && child == this._primaryChild) || this._runningChildren.indexOf(child) >= 0) {
                         child.Clear();
@@ -83,7 +83,7 @@ export class BTSimpleParallel extends BTComposite {
 
     private ResetRuningChildren() {
         this._runningChildren = new Array<BTNode>();
-        for(let i in this._children) {
+        for (let i in this._children) {
             let child = this._children[i];
             this._runningChildren.push(child);
         }
@@ -91,8 +91,8 @@ export class BTSimpleParallel extends BTComposite {
     }
 
     private RunBackground(dt: number) {
-        for(let i = this._runningChildren.length - 1; i >= 0; --i) {
-            let child : BTNode= this._runningChildren[i];
+        for (let i = this._runningChildren.length - 1; i >= 0; --i) {
+            let child: BTNode = this._runningChildren[i];
             let result: BTResult = child.Tick(dt);
 
             if (result != BTResult.Running) {

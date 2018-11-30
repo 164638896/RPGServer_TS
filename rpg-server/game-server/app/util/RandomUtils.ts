@@ -1,4 +1,3 @@
-
 export class RandomUtils {
 
     static range(from: number, end: number): number {

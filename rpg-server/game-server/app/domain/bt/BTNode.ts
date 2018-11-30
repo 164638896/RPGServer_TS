@@ -12,7 +12,7 @@ export abstract class BTNode {
         }
     }
 
-    public Tick (dt: number): BTResult {
+    public Tick(dt: number): BTResult {
         return BTResult.Failed;
     }
 

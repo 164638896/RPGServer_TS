@@ -17,12 +17,12 @@ export class MysqlMgr {
     }
 
     query(sql, args, callback) {
-        this.mPool.getConnection(function(err, conn) {
-            if(err) {
+        this.mPool.getConnection(function (err, conn) {
+            if (err) {
                 callback(err, null);
             } else {
                 // 这里返回的参数可以改变一下 直接取到查询结果
-                conn.query(sql, args, function(err, res) {
+                conn.query(sql, args, function (err, res) {
                     conn.release();
                     callback(err, res);
                 });

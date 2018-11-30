@@ -1,4 +1,3 @@
-
 export class MathUtils {
     //c原点, u 方向, r半径, theta 一半的角度, p点是否在扇形里
     static IsPointInCircularSector(cx: number, cy: number, ux: number, uy: number, r: number, theta: number, px: number, py: number): boolean {

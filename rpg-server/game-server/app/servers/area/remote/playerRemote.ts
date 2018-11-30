@@ -28,7 +28,7 @@ export class PlayerRemote {
 
         let player = this.areaService.getPlayerByPlayerId(playerId, EntityType.Player);
         if (!player) {
-            return { code: 500, error: true };
+            return {code: 500, error: true};
         }
 
         this.areaService.removeEntity(player.getData().mInstId, EntityType.Player);

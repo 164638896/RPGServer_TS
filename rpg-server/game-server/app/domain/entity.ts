@@ -7,20 +7,20 @@ import {MonsterAI} from "./MonsterAI";
 
 
 export class Entity extends EventEmitter {
-    protected mEntityData : EntityData;
+    protected mEntityData: EntityData;
 
     constructor(data: any, type: EntityType) {
         super();
 
-        if(type === EntityType.Player) {
+        if (type === EntityType.Player) {
             this.mEntityData = new PlayerData(data);
         }
-        else if(type === EntityType.Monster) {
+        else if (type === EntityType.Monster) {
             this.mEntityData = new MonsterData(data);
         }
     }
 
-    getData() : EntityData{
+    getData(): EntityData {
         return this.mEntityData;
     }
 }
@@ -42,7 +42,7 @@ export class Player extends Role {
     constructor(data: any, frontendId: FRONTENDID) {
         // test
         data.skillList = new Array<number>();
-        for(let i =1; i <= 4; ++i) {
+        for (let i = 1; i <= 4; ++i) {
             data.skillList.push(i);
         }
         //test
@@ -69,8 +69,9 @@ export class Npc extends Role {
 }
 
 export class Monster extends Role {
-    private mAi : MonsterAI;
+    private mAi: MonsterAI;
     private lastTime: number;
+
     constructor(data: any) {
         super(data, EntityType.Monster);
         this.lastTime = Date.now();
