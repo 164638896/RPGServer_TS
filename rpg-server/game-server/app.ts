@@ -40,10 +40,10 @@ app.configure('production|development', 'gate', function () {
 });
 
 // Configure for area server
-app.configure('production|development', 'area', function() {
+app.configure('production|development', 'scene', function() {
     //app.set('areaService', new AreaService());
     app.set('sceneMgr', new SceneMgr());
-    app.before(PlayerFilter());
+    //app.before(PlayerFilter());
 });
 
 // app configure
@@ -60,11 +60,11 @@ app.configure('production|development', function () {
 });
 
 // Configure database
-app.configure('production|development', 'area|auth|connector|master', function() {
+app.configure('production|development', 'scene|auth|connector|master', function() {
     app.set('dbclient', new MysqlMgr(app));
 });
 
-app.configure('production|development', 'area|connector', function() {
+app.configure('production|development', 'scene|connector', function() {
     ConfigLoader.instance.loadAllConfig(new AreaServerLoader(), null);
 });
 

@@ -16,7 +16,8 @@ export class GameScene {
     private added = []; // the added entities in one tick
     private reduced = []; // the reduced entities in one tick
 
-    constructor() {
+    constructor(instId: number) {
+        this.mInstId = instId;
         this.mEntityList[EntityType.Player] = {};
         this.mEntityList[EntityType.Monster] = {};
         this.mEntityList[EntityType.Npc] = {};
@@ -162,6 +163,7 @@ export class GameScene {
 
             //let data: any = DataApi.getInstance().mCharacter.findById(2);
             let m: Monster = new Monster({
+                sceneId: this.mInstId,
                 name: 'monster',
                 x: RandomUtils.range(-4, 4), y: 0.282, z: RandomUtils.range(-3.5, -2),
                 dirX: RandomUtils.range(-1, 1), dirY: 0, dirZ: RandomUtils.range(-1, 1),

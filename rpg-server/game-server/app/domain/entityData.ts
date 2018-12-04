@@ -1,6 +1,8 @@
+
+import {FRONTENDID} from "pinus/lib/util/constants";
 import {EntityType} from "../consts/consts";
 import {Vector3} from "../util/vector3";
-import {FRONTENDID} from "pinus/lib/util/constants";
+
 
 export let gEntityInstId: number = 0;
 

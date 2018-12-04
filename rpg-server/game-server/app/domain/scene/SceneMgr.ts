@@ -22,8 +22,8 @@ export class SceneMgr {
 
     public init() {
         // 创建场景
-        this.mSceneList[1] = new GameScene();
-        this.mSceneList[2] = new GameScene();
+        this.mSceneList[1] = new GameScene(1);
+        this.mSceneList[2] = new GameScene(2);
     }
 
     public getScene(id: number): GameScene {

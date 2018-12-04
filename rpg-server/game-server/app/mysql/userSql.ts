@@ -1,8 +1,9 @@
 import {invokeCallback, pinus} from 'pinus';
 import * as util from 'util';
-import {Player} from '../domain/entity';
-import {PlayerData} from "../domain/entityData";
 import {Cfg} from "../config/Cfg";
+import {Player} from "../domain/entity";
+import {PlayerData} from "../domain/entityData";
+
 
 export class UserSql {
 

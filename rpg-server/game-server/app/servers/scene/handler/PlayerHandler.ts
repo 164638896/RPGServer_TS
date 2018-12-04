@@ -33,7 +33,7 @@ export class PlayerHandler {
             return {code: 500, error: true};
         }
 
-        let scene = this.mSceneMgr.getScene(playerData.mSceneId);
+        let scene = this.mSceneMgr.getScene(playerData.sceneId);
         if(!scene) {
             logger.warn('Can not find scene =', playerData.mSceneId);
             return {code: 500, error: true};

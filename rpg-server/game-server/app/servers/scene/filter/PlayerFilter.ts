@@ -10,13 +10,13 @@ export class PlayerFilter {
 
     async before(msg: any, session: BackendSession) {
 
-        let sceneMgr: SceneMgr = pinus.app.get('sceneMgr');
-        let sceneId = session.get('sceneId');
-        if(sceneId) {
-            let scene = sceneMgr.getScene(sceneId);
-            session.set('scene', scene);
-            session.set('sceneId', sceneId);
-        }
+        // let sceneMgr: SceneMgr = pinus.app.get('sceneMgr');
+        // let sceneId = session.get('sceneId');
+        // if(sceneId) {
+        //     let scene = sceneMgr.getScene(sceneId);
+        //     session.set('scene', scene);
+        //     session.set('sceneId', sceneId);
+        // }
 
         return {code: 200};
     }
