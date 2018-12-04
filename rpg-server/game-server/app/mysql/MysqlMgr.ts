@@ -1,5 +1,4 @@
 import {Application} from 'pinus/lib/application';
-
 let mysql = require('mysql');
 
 export class MysqlMgr {
@@ -21,7 +20,7 @@ export class MysqlMgr {
             if (err) {
                 callback(err, null);
             } else {
-                // 这里返回的参数可以改变一下 直接取到查询结果
+                //
                 conn.query(sql, args, function (err, res) {
                     conn.release();
                     callback(err, res);

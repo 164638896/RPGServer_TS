@@ -1,13 +1,12 @@
-import {Channel} from 'pinus/lib/common/service/channelService';
-import {pinus} from 'pinus';
-import {Entity, Monster, Npc, Player} from '../domain/entity';
-import {EntityType} from '../consts/consts';
-import {MonsterData, NpcData, PlayerData, RoleData} from "../domain/entityData";
-import {RandomUtils} from "../util/RandomUtils";
-import {Vector3} from "../util/vector3";
+import {Channel} from "pinus/lib/common/service/channelService";
+import {EntityType} from "../../consts/consts";
+import {Entity, Monster} from "../entity";
+import {MonsterData, NpcData, PlayerData, RoleData} from "../entityData";
+import {pinus} from "pinus";
+import {RandomUtils} from "../../util/RandomUtils";
 
 
-export class AreaService {
+export class GameScene {
     private mInstId: number;
     private channel: Channel = null;
     private mEntityList = {};

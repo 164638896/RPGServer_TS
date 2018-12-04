@@ -1,9 +1,10 @@
 import { pinus } from 'pinus';
 import { preload } from './preload';
-import {AreaService} from './app/services/areaService';
 import {MysqlMgr} from './app/mysql/mysqlMgr';
 import {AreaServerLoader} from './app/config/ServerLoader';
 import ConfigLoader from './app/config/ConfigLoader';
+import {SceneMgr} from "./app/domain/scene/SceneMgr";
+import PlayerFilter from "./app/servers/scene/filter/PlayerFilter";
 
 
 /**
@@ -40,7 +41,9 @@ app.configure('production|development', 'gate', function () {
 
 // Configure for area server
 app.configure('production|development', 'area', function() {
-    app.set('areaService', new AreaService());
+    //app.set('areaService', new AreaService());
+    app.set('sceneMgr', new SceneMgr());
+    app.before(PlayerFilter());
 });
 
 // app configure

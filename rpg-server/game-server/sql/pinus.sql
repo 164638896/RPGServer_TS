@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `Player` (
   `mp` smallint(6) unsigned DEFAULT '0',
   `maxHp` smallint(6) unsigned DEFAULT '0',
   `maxMp` smallint(6) unsigned DEFAULT '0',
-  `areaId` bigint(20) unsigned DEFAULT '1',
+  `sceneId` bigint(20) unsigned DEFAULT '1',
   `x` float DEFAULT '0',
   `y` float DEFAULT '0',
   `z` float DEFAULT '0',

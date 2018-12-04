@@ -6,11 +6,11 @@ import {MonsterData} from "./entityData";
 import {Precondition, PreconditionNOT} from "./bt/Conditional/BTConditional";
 import {BTSequence} from "./bt/Composites/BTSequence";
 import {pinus} from "pinus";
-import {AreaService} from "../services/areaService";
 import {EntityType} from "../consts/consts";
 import {Vector3} from "../util/vector3";
 import {Channel} from "pinus/lib/common/service/channelService";
 import {RandomUtils} from "../util/RandomUtils";
+import {GameScene} from "./scene/gameScene";
 
 
 export class DealAction extends BTAction {
@@ -78,13 +78,13 @@ export class IdleAction extends BTAction {
 export class PatrolAction extends BTAction {
     private mMonsterData: MonsterData;
     private mChannel: Channel;
-    private mAreaService: AreaService;
+    private mScene: GameScene;
 
-    constructor(data: MonsterData, channel: Channel, areaService: AreaService) {
+    constructor(data: MonsterData, channel: Channel, areaService: GameScene) {
         super();
         this.mMonsterData = data;
         this.mChannel = channel;
-        this.mAreaService = areaService;
+        this.mScene = areaService;
     }
 
     protected Enter() {
@@ -126,13 +126,13 @@ export class PatrolAction extends BTAction {
 export class FollowAction extends BTAction {
     private mMonsterData: MonsterData;
     private mChannel: Channel;
-    private mAreaService: AreaService;
+    private mScene: GameScene;
 
-    constructor(data: MonsterData, channel: Channel, areaService: AreaService) {
+    constructor(data: MonsterData, channel: Channel, scene: GameScene) {
         super();
         this.mMonsterData = data;
         this.mChannel = channel;
-        this.mAreaService = areaService;
+        this.mScene = scene;
     }
 
     protected Enter() {
@@ -141,7 +141,7 @@ export class FollowAction extends BTAction {
 
     protected Execute(dt: number): BTResult {
         // 移动
-        let player: Player = this.mAreaService.getEntity(this.mMonsterData.mTargetId, EntityType.Player) as Player;
+        let player: Player = this.mScene.getEntity(this.mMonsterData.mTargetId, EntityType.Player) as Player;
         if (player) {
 
             let dir: Vector3 = Vector3.sub(player.getData().mPos, this.mMonsterData.mPos);
@@ -175,19 +175,19 @@ export class FollowAction extends BTAction {
 export class AttackAction extends BTAction {
     private mMonsterData: MonsterData;
     private mChannel: Channel;
-    private mAreaService: AreaService;
+    private mScene: GameScene;
 
-    constructor(data: MonsterData, channel: Channel, areaService: AreaService) {
+    constructor(data: MonsterData, channel: Channel, areaService: GameScene) {
         super();
         this.mMonsterData = data;
         this.mChannel = channel;
-        this.mAreaService = areaService;
+        this.mScene = areaService;
     }
 
     protected Enter() {
         super.Enter();
 
-        let player: Player = this.mAreaService.getEntity(this.mMonsterData.mTargetId, EntityType.Player) as Player;
+        let player: Player = this.mScene.getEntity(this.mMonsterData.mTargetId, EntityType.Player) as Player;
         if (player) {
             let dir: Vector3 = Vector3.sub(player.getData().mPos, this.mMonsterData.mPos);
             dir.y = 0;
@@ -234,7 +234,7 @@ export class MonsterAI {
     private mMonster: Monster;
     private readonly mMonsterData: MonsterData;
     private mRoot: BTSelector;
-    private mAreaService: AreaService;
+    private mScene: GameScene;
     private mChannel: Channel;
 
     constructor(monster: Monster) {
@@ -248,8 +248,8 @@ export class MonsterAI {
     }
 
     init() {
-        this.mAreaService = pinus.app.get('areaService');
-        this.mChannel = this.mAreaService.getChannel();
+        this.mScene = pinus.app.get('scene');
+        this.mChannel = this.mScene.getChannel();
 
         let isDeadFun = () => {
             return this.mMonsterData.mHp <= 0;
@@ -276,7 +276,7 @@ export class MonsterAI {
             let id: number = this.mMonsterData.mTargetId;
             if (id) {
 
-                let player: Player = this.mAreaService.getEntity(id, EntityType.Player) as Player;
+                let player: Player = this.mScene.getEntity(id, EntityType.Player) as Player;
                 if (player) {
                     let dis = Vector3.distance(player.getData().mPos, this.mMonsterData.mPos);
                     if (dis <= 0.5) {
@@ -336,7 +336,7 @@ export class MonsterAI {
             //followSubtree.AddChild(HPMore);
 
             // 追击Action
-            followSubtree.AddChild(new FollowAction(this.mMonsterData, this.mChannel, this.mAreaService));
+            followSubtree.AddChild(new FollowAction(this.mMonsterData, this.mChannel, this.mScene));
 
             aliveSel.AddChild(followSubtree);
         }
@@ -350,7 +350,7 @@ export class MonsterAI {
 
             // 攻击Action
             atkSeq.AddChild(new BTActionWait(1000));
-            atkSeq.AddChild(new AttackAction(this.mMonsterData, this.mChannel, this.mAreaService));
+            atkSeq.AddChild(new AttackAction(this.mMonsterData, this.mChannel, this.mScene));
             atkSeq.AddChild(new BTActionWaitRandom(1000, 3000));
 
             aliveSel.AddChild(atkSeq);
@@ -363,7 +363,7 @@ export class MonsterAI {
             patrolSeq.AddChild(new BTActionWaitRandom(5000, 10000));
 
             // 巡逻Action
-            patrolSeq.AddChild(new PatrolAction(this.mMonsterData, this.mChannel, this.mAreaService));
+            patrolSeq.AddChild(new PatrolAction(this.mMonsterData, this.mChannel, this.mScene));
 
             aliveSel.AddChild(patrolSeq);
         }

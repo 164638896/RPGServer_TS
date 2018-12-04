@@ -6,10 +6,10 @@ import {UserSql} from '../../../mysql/userSql';
 let logger = getLogger('pinus', path.basename(__filename));
 
 export default function (app: Application) {
-    return new Handler(app);
+    return new EntryHandler(app);
 }
 
-export class Handler {
+export class EntryHandler {
     private readonly serverId: string;
 
     constructor(private app: Application) {
@@ -38,7 +38,7 @@ export class Handler {
 
         session.set('playerName', playerData.name);
         session.set('playerId', playerData.id); // connector 只有 player id，没法绑定具体的Player实例Id，因为playerId 是在area服务器上创建的
-        session.set('areaId', 1);
+        session.set('sceneId', playerData.sceneId);
         session.on('closed', this.onUserLeave.bind(this));
         session.pushAll((err: any, result: any) => { // FrontendSession推送到真正的session里，这样创建的BackendSession 里面也可以取到
 
@@ -52,6 +52,6 @@ export class Handler {
             return;
         }
 
-        this.app.rpc.area.playerRemote.playerLeave.route(session)(session.get('playerId'), session.get('areaId'), session.get('playerName'));
+        this.app.rpc.scene.playerRemote.playerLeave.route(session)(session.get('playerId'), session.get('sceneId'), session.get('playerName'));
     }
 }

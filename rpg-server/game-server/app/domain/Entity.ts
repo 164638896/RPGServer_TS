@@ -40,12 +40,12 @@ export class Role extends Entity {
 
 export class Player extends Role {
     constructor(data: any, frontendId: FRONTENDID) {
-        // test
+        // test begin
         data.skillList = new Array<number>();
         for (let i = 1; i <= 4; ++i) {
             data.skillList.push(i);
         }
-        //test
+        //test end
 
         super(data, EntityType.Player);
 

@@ -1,13 +1,14 @@
 import {Application, BackendSession, pinus} from 'pinus';
 import {Entity, Player} from '../../../domain/entity';
-import {AreaService} from '../../../services/areaService';
 
 import {getLogger} from 'pinus-logger';
 import * as path from 'path';
-import {UserSql} from '../../../mysql/userSql';
 import {EntityType} from "../../../consts/consts";
 import {RoleData} from "../../../domain/entityData";
 import {MathUtils} from "../../../util/MathUtils";
+import {SceneMgr} from "../../../domain/scene/SceneMgr";
+import {GameScene} from "../../../domain/scene/GameScene";
+import {UserSql} from "../../../mysql/UserSql";
 
 let logger = getLogger('pinus', path.basename(__filename));
 
@@ -17,10 +18,10 @@ export default function (app: Application) {
 }
 
 export class PlayerHandler {
-    private mAreaService: AreaService;
+    private mSceneMgr: SceneMgr;
 
     constructor(private app: Application) {
-        this.mAreaService = app.get('areaService');
+        this.mSceneMgr = app.get('sceneMgr');
     }
 
     async enterScene(msg: { name: string, playerId: string }, session: BackendSession) {
@@ -32,16 +33,36 @@ export class PlayerHandler {
             return {code: 500, error: true};
         }
 
+        let scene = this.mSceneMgr.getScene(playerData.mSceneId);
+        if(!scene) {
+            logger.warn('Can not find scene =', playerData.mSceneId);
+            return {code: 500, error: true};
+        }
+
+        session.set('scene', scene);
+        session.pushAll((err: any, result: any) => {
+
+        });
+
+
         let player = new Player(playerData, session.frontendId);
 
-        this.mAreaService.addEntity(player);
+        scene.addEntity(player);
 
-        return {code: 200, entities: this.mAreaService.getAllEntitiesInfo(), curPlayerInstId: player.getData().mInstId};
+        return {code: 200, entities: scene.getAllEntitiesInfo(), curPlayerInstId: player.getData().mInstId};
     }
 
     async move(msg: { x: number, y: number, z: number, dX: number, dZ: number }, session: BackendSession) {
         let playerId = session.get('playerId');
-        let player: Player = this.mAreaService.getPlayerByPlayerId(playerId, EntityType.Player) as Player;
+        //let sceneId = session.get('sceneId');
+        //let scene: GameScene = this.mSceneMgr.getScene(sceneId);
+        let scene: GameScene = session.get('scene');
+        if(!scene) {
+            logger.warn('Can not find scene');
+            return {code: 500, error: true};
+        }
+
+        let player: Player = scene.getPlayerByPlayerId(playerId, EntityType.Player) as Player;
         if (!player) {
             logger.error('Move without a valid player ! playerId : %j', playerId);
             return {code: 500, error: 'invalid player:' + playerId};
@@ -50,7 +71,7 @@ export class PlayerHandler {
         player.move(msg.x, msg.y, msg.z, msg.dX, msg.dZ);
         let playerData = player.getData();
         let pos = playerData.mPos;
-        this.mAreaService.getChannel().pushMessage('onMove', {
+        scene.getChannel().pushMessage('onMove', {
             InstId: playerData.mInstId,
             x: pos.x,
             y: pos.y,
@@ -62,7 +83,13 @@ export class PlayerHandler {
 
     async skill(msg: { skillId: number, playerInstId: number }, session: BackendSession) {
 
-        let player: Player = this.mAreaService.getEntity(msg.playerInstId, EntityType.Player) as Player;
+        let scene: GameScene = session.get('scene');
+        if(!scene) {
+            logger.warn('Can not find scene');
+            return {code: 500, error: true};
+        }
+
+        let player: Player = scene.getEntity(msg.playerInstId, EntityType.Player) as Player;
         if (!player) {
             logger.error('skill without a valid player ! playerInstId : %j', msg.playerInstId);
             return {code: 500, error: 'invalid playerInstId:' + msg.playerInstId};
@@ -73,7 +100,7 @@ export class PlayerHandler {
         let targets = [];
         let pos = playerData.mPos;
         let forward = playerData.mForward;
-        let allEntities = this.mAreaService.getAllEntities();
+        let allEntities = scene.getAllEntities();
         for (let type in allEntities) {
             let entities = allEntities[type];
             for (let i in entities) {
@@ -91,7 +118,7 @@ export class PlayerHandler {
             }
         }
 
-        this.mAreaService.getChannel().pushMessage('onAttack', {
+        scene.getChannel().pushMessage('onAttack', {
             skillId: msg.skillId,
             attackId: msg.playerInstId,
             targetIds: targets

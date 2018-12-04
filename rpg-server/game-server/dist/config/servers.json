@@ -6,8 +6,8 @@
 	"gate": [
 	    {"id": "gate-server-1", "host": "127.0.0.1", "clientPort": 3014, "frontend": true, "args": "--inspect=10003"}
 	],
-	"area":[
-        {"id":"area-server-1", "host":"127.0.0.1", "port":6050, "args": "--inspect=10002"}
+	"scene":[
+        {"id":"scene-server-1", "host":"127.0.0.1", "port":6050, "args": "--inspect=10002"}
     ]
   },
   "production":{
@@ -17,8 +17,8 @@
 	"gate": [
 	    {"id": "gate-server-1", "host": "127.0.0.1", "clientPort": 3014, "frontend": true}
 	],
-	"area":[
-        {"id":"area-server-1", "host":"127.0.0.1", "port":6050}
+	"scene":[
+        {"id":"scene-server-1", "host":"127.0.0.1", "port":6050}
     ]
   }
 }
