@@ -9,7 +9,7 @@ export let gEntityInstId: number = 0;
 export class EntityData {
     mInstId: number = 0;
     mType: EntityType = EntityType.None;
-    mSceneId: number = 0;
+    mSceneId: string;
     mPos: Vector3;
     mForward: Vector3;
 
@@ -32,7 +32,6 @@ export class EntityData {
 }
 
 export class RoleData extends EntityData {
-    mSceneId: number = 0;
     mName: string;
     mHp: number = 0;
     mMp: number = 0;
@@ -50,7 +49,6 @@ export class RoleData extends EntityData {
     constructor(data: any, type: EntityType) {
         super(data, type);
 
-        this.mSceneId = Number(data.sceneId || 1);
         this.mName = data.name;
         this.mHp = data.hp;
         this.mMp = data.mp;

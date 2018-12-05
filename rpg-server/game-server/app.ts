@@ -3,9 +3,8 @@ import { preload } from './preload';
 import {MysqlMgr} from './app/mysql/mysqlMgr';
 import {AreaServerLoader} from './app/config/ServerLoader';
 import ConfigLoader from './app/config/ConfigLoader';
-import {SceneMgr} from "./app/domain/scene/SceneMgr";
-import PlayerFilter from "./app/servers/scene/filter/PlayerFilter";
-
+import {GameScene} from "./app/domain/scene/GameScene";
+import {RouteUtil} from "./app/util/RouteUtil";
 
 /**
  *  替换全局Promise
@@ -41,8 +40,9 @@ app.configure('production|development', 'gate', function () {
 
 // Configure for area server
 app.configure('production|development', 'scene', function() {
-    //app.set('areaService', new AreaService());
-    app.set('sceneMgr', new SceneMgr());
+    let sceneServer: any = app.curServer;
+    let scene = new GameScene(sceneServer.id);
+    app.set('scene', scene);
     //app.before(PlayerFilter());
 });
 
@@ -52,11 +52,14 @@ app.configure('production|development', function () {
     app.enable('systemMonitor'); //允许监控
 
     // route configures
-    // app.route('chat', routeUtil.chat);
+    app.route('area', RouteUtil.scene);
+    //app.route('connector', RouteUtil.connector);
 
     app.loadConfig('mysql', app.getBase() + '/config/mysql.json');
     // filter configures
     app.filter(new pinus.filters.timeout());
+
+
 });
 
 // Configure database

@@ -7,7 +7,7 @@ import {RandomUtils} from "../../util/RandomUtils";
 
 
 export class GameScene {
-    private mInstId: number;
+    private mId: string; // servers.json -> scene -> id; 等于player 里面的 mSceneId
     private channel: Channel = null;
     private mEntityList = {};
 
@@ -16,8 +16,8 @@ export class GameScene {
     private added = []; // the added entities in one tick
     private reduced = []; // the reduced entities in one tick
 
-    constructor(instId: number) {
-        this.mInstId = instId;
+    constructor(id: string) {
+        this.mId = id;
         this.mEntityList[EntityType.Player] = {};
         this.mEntityList[EntityType.Monster] = {};
         this.mEntityList[EntityType.Npc] = {};
@@ -129,7 +129,7 @@ export class GameScene {
             return this.channel;
         }
 
-        this.channel = pinus.app.get('channelService').getChannel('area_' + this.mInstId, true);
+        this.channel = pinus.app.get('channelService').getChannel('scene_' + this.mId, true);
         return this.channel;
     }
 
@@ -163,7 +163,7 @@ export class GameScene {
 
             //let data: any = DataApi.getInstance().mCharacter.findById(2);
             let m: Monster = new Monster({
-                sceneId: this.mInstId,
+                sceneId: this.mId,
                 name: 'monster',
                 x: RandomUtils.range(-4, 4), y: 0.282, z: RandomUtils.range(-3.5, -2),
                 dirX: RandomUtils.range(-1, 1), dirY: 0, dirZ: RandomUtils.range(-1, 1),

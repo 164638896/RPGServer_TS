@@ -127,7 +127,7 @@ export class UserSql {
         let y = 0.282;
         let z = -2.6;
         let dirZ = 1;
-        let sceneId = 1;
+        let sceneId = '1';
         // role.country = 1;
         let args = [uid, typeId, 'test', name, 1, 1, 1, 0, playerCfg.atk, playerCfg.def, 0, 0, 1, 1, playerCfg.hp, 100, playerCfg.hp, 100, sceneId, x, y, z, 0, 0, dirZ, 1];
 
@@ -160,7 +160,7 @@ export class UserSql {
     }
 
     updatePlayer(player: Player, cb: Function) {
-        let sql = 'update Player set x = ? ,y = ? , x = ?, hp = ?, mp = ? , maxHp = ?, maxMp = ?, level = ?, exp = ?, areaId = ?, atk = ?, def = ?, moveSpeed = ?, atkSpeed = ? where id = ?';
+        let sql = 'update Player set x = ? ,y = ? , x = ?, hp = ?, mp = ? , maxHp = ?, maxMp = ?, level = ?, exp = ?, sceneId = ?, atk = ?, def = ?, moveSpeed = ?, atkSpeed = ? where id = ?';
         let data = player.getData() as PlayerData;
         let args = [data.mPos.x, data.mPos.y, data.mPos.z, data.mHp, data.mMp, data.mMaxHp, data.mMaxMp, data.mLevel, data.mExp, data.mSceneId, data.mAtk, data.mDef, data.mMoveSpeed, data.mAtkSpeed, data.id];
         pinus.app.get('dbclient').query(sql, args, function (err, res) {

@@ -11,7 +11,6 @@ import {Vector3} from "../util/vector3";
 import {Channel} from "pinus/lib/common/service/channelService";
 import {RandomUtils} from "../util/RandomUtils";
 import {GameScene} from "./scene/gameScene";
-import {SceneMgr} from "./scene/SceneMgr";
 
 
 export class DealAction extends BTAction {
@@ -249,8 +248,7 @@ export class MonsterAI {
     }
 
     init() {
-        let sceneMgr: SceneMgr = pinus.app.get('sceneMgr');
-        this.mScene = sceneMgr.getScene(this.mMonsterData.mSceneId);
+        this.mScene = pinus.app.get('scene');
         this.mChannel = this.mScene.getChannel();
 
         let isDeadFun = () => {

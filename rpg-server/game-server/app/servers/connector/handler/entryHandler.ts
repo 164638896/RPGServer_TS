@@ -10,11 +10,11 @@ export default function (app: Application) {
 }
 
 export class EntryHandler {
-    private readonly serverId: string;
+    //private readonly serverId: string;
 
     constructor(private app: Application) {
-        let serverName = app.get('serverId');
-        this.serverId = serverName.split('-')[2];
+        // let serverName = app.get('serverId');
+        // this.serverId = serverName.split('-')[2];
     }
 
     async entry(msg: { name: string }, session: FrontendSession) {
@@ -52,6 +52,6 @@ export class EntryHandler {
             return;
         }
 
-        this.app.rpc.scene.playerRemote.playerLeave.route(session)(session.get('playerId'), session.get('sceneId'), session.get('playerName'));
+        this.app.rpc.scene.PlayerRemote.playerLeave.route(session)(session.get('playerId'), session.get('sceneId'), session.get('playerName'));
     }
 }

@@ -4,6 +4,10 @@ import {EntityData, MonsterData, PlayerData} from "./entityData";
 import {FRONTENDID} from "pinus/lib/util/constants";
 import {UserSql} from "../mysql/userSql";
 import {MonsterAI} from "./MonsterAI";
+import {BackendSession} from "pinus/lib/common/service/backendSessionService";
+import {GameScene} from "./scene/GameScene";
+import {invokeCallback} from 'pinus';
+
 
 
 export class Entity extends EventEmitter {
@@ -58,6 +62,21 @@ export class Player extends Role {
 
         UserSql.getInstance().updatePlayer(this, () => {
 
+        });
+    }
+
+    changeScene(currScene: GameScene, targetSceneId: string, session: BackendSession, cb: Function) {
+        let playerData = this.getData() as PlayerData;
+        // 更新数据库
+        UserSql.getInstance().updatePlayer(this, () => {
+            session.set('sceneId', targetSceneId);
+            session.pushAll((err: any, result: any) => {
+
+            });
+
+            currScene.removeEntity(playerData.mInstId, EntityType.Player);
+
+            invokeCallback(cb, null, null);
         });
     }
 }
