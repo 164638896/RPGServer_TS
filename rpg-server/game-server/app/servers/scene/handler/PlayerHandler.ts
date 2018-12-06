@@ -1,13 +1,13 @@
 import {Application, BackendSession, pinus} from 'pinus';
-import {Entity, Player} from '../../../domain/entity';
+import {Entity, Player} from '../../../domain/Entity';
 
 import {getLogger} from 'pinus-logger';
 import * as path from 'path';
 import {EntityType} from "../../../consts/consts";
-import {RoleData} from "../../../domain/entityData";
+import {RoleData} from "../../../domain/EntityData";
 import {MathUtils} from "../../../util/MathUtils";
 import {GameScene} from "../../../domain/scene/GameScene";
-import {UserSql} from "../../../mysql/userSql";
+import {UserSql} from "../../../mysql/UserSql";
 
 let logger = getLogger('pinus', path.basename(__filename));
 

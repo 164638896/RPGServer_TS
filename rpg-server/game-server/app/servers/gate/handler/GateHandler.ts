@@ -1,7 +1,7 @@
 import {Application} from 'pinus';
 import {getLogger} from 'pinus-logger';
 import * as path from 'path';
-import {dispatch} from "../../../util/dispatcher";
+import { dispatch } from '../../../util/Dispatcher';
 
 let logger = getLogger('pinus', path.basename(__filename));
 

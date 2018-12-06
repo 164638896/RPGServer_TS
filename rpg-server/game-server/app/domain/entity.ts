@@ -1,12 +1,12 @@
 import {EventEmitter} from 'events';
 import {EntityType} from '../consts/consts';
-import {EntityData, MonsterData, PlayerData} from "./entityData";
 import {FRONTENDID} from "pinus/lib/util/constants";
-import {UserSql} from "../mysql/userSql";
+import {UserSql} from "../mysql/UserSql";
 import {MonsterAI} from "./MonsterAI";
 import {BackendSession} from "pinus/lib/common/service/backendSessionService";
 import {GameScene} from "./scene/GameScene";
 import {invokeCallback} from 'pinus';
+import { EntityData, PlayerData, MonsterData } from './EntityData';
 
 
 

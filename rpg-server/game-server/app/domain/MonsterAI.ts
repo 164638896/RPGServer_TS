@@ -1,13 +1,13 @@
 import {BTSelector} from "./bt/Composites/BTSelector";
-import {Monster, Player} from "./entity";
+import {Monster, Player} from "./Entity";
 import {BTAction, BTActionWait, BTActionWaitRandom} from "./bt/Actions/BTAction";
 import {BTResult} from "./bt/BTConstants";
-import {MonsterData} from "./entityData";
+import {MonsterData} from "./EntityData";
 import {Precondition, PreconditionNOT} from "./bt/Conditional/BTConditional";
 import {BTSequence} from "./bt/Composites/BTSequence";
 import {pinus} from "pinus";
 import {EntityType} from "../consts/consts";
-import {Vector3} from "../util/vector3";
+import {Vector3} from "../util/Vector3";
 import {Channel} from "pinus/lib/common/service/channelService";
 import {RandomUtils} from "../util/RandomUtils";
 import {GameScene} from "./scene/gameScene";

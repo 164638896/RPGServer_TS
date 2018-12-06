@@ -1,7 +1,7 @@
 import {Application, FrontendSession, pinus} from 'pinus';
 import {getLogger} from 'pinus-logger';
 import * as path from 'path';
-import {UserSql} from '../../../mysql/userSql';
+import {UserSql} from '../../../mysql/UserSql';
 
 let logger = getLogger('pinus', path.basename(__filename));
 

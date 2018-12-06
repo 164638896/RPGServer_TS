@@ -1,6 +1,6 @@
 import { pinus } from 'pinus';
 import { preload } from './preload';
-import {MysqlMgr} from './app/mysql/mysqlMgr';
+import {MysqlMgr} from './app/mysql/MysqlMgr';
 import {AreaServerLoader} from './app/config/ServerLoader';
 import ConfigLoader from './app/config/ConfigLoader';
 import {GameScene} from "./app/domain/scene/GameScene";

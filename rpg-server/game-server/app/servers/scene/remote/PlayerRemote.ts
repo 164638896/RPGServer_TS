@@ -1,6 +1,6 @@
 import {Application, FrontendSession, RemoterClass} from 'pinus';
 import {EntityType} from "../../../consts/consts";
-import {Entity} from "../../../domain/entity";
+import {Entity} from "../../../domain/Entity";
 import * as path from "path";
 import {getLogger} from 'pinus-logger';
 import {GameScene} from "../../../domain/scene/GameScene";

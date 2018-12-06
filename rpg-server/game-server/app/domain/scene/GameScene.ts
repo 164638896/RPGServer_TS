@@ -1,7 +1,7 @@
 import {Channel} from "pinus/lib/common/service/channelService";
 import {EntityType} from "../../consts/consts";
-import {Entity, Monster, Player} from "../entity";
-import {MonsterData, NpcData, PlayerData, RoleData} from "../entityData";
+import {Entity, Monster, Player} from "../Entity";
+import {MonsterData, NpcData, PlayerData, RoleData} from "../EntityData";
 import {pinus} from "pinus";
 import {RandomUtils} from "../../util/RandomUtils";
 
