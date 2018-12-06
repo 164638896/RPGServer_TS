@@ -1,14 +1,14 @@
 import { Session, Application } from 'pinus';
 export class RouteUtil {
     static scene(session: Session, msg: any, app: Application, cb: (err: Error , serverId ?: string) => void) {
-        let sceneId = session.get('sceneId');
+        let serverId = session.get('serverId');
 
-        if (!sceneId) {
+        if (!serverId) {
             cb(new Error('can not find server info for type: ' + msg.serverType));
             return;
         }
 
-        cb(null, sceneId);
+        cb(null, serverId);
     }
 
     static connector(session: Session, msg: any, app: Application, cb: (err: Error , serverId ?: string) => void) {

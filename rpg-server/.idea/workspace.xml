@@ -2,20 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca5e7028-6272-4c9c-9899-c7a736844698" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/game-server/app/util/RouteUtil.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game-server/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/game-server/app.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game-server/app/domain/MonsterAI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/game-server/app/domain/MonsterAI.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game-server/app/domain/entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/game-server/app/domain/entity.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game-server/app/domain/entityData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/game-server/app/domain/entityData.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game-server/app/domain/scene/GameScene.ts" beforeDir="false" afterPath="$PROJECT_DIR$/game-server/app/domain/scene/GameScene.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game-server/app/domain/scene/SceneMgr.ts" beforeDir="false" afterPath="$PROJECT_DIR$/game-server/app/domain/scene/SceneMgr.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game-server/app/mysql/userSql.ts" beforeDir="false" afterPath="$PROJECT_DIR$/game-server/app/mysql/userSql.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game-server/app/servers/connector/handler/EntryHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/game-server/app/servers/connector/handler/EntryHandler.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game-server/app/servers/scene/filter/PlayerFilter.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/game-server/app/servers/scene/handler/PlayerHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/game-server/app/servers/scene/handler/PlayerHandler.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game-server/app/servers/scene/remote/PlayerRemote.ts" beforeDir="false" afterPath="$PROJECT_DIR$/game-server/app/servers/scene/remote/PlayerRemote.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game-server/dist/config/log4js.json" beforeDir="false" afterPath="$PROJECT_DIR$/game-server/dist/config/log4js.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game-server/app/util/RouteUtil.ts" beforeDir="false" afterPath="$PROJECT_DIR$/game-server/app/util/RouteUtil.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game-server/dist/config/servers.json" beforeDir="false" afterPath="$PROJECT_DIR$/game-server/dist/config/servers.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game-server/sql/pinus.sql" beforeDir="false" afterPath="$PROJECT_DIR$/game-server/sql/pinus.sql" afterDir="false" />
     </list>
@@ -33,30 +29,30 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="12" />
-          <entry key="project.open.time.0" value="3" />
+          <entry key="project.open.time.0" value="4" />
           <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.5" value="4" />
           <entry key="project.open.time.6" value="6" />
           <entry key="project.open.time.7" value="2" />
-          <entry key="project.opened" value="19" />
+          <entry key="project.opened" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
         <counts>
-          <entry key="TypeScriptServerServiceImpl" value="18" />
+          <entry key="TypeScriptServerServiceImpl" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="js" value="39" />
+          <entry key="js" value="40" />
           <entry key="sql" value="2" />
           <entry key="ts" value="240" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JavaScript" value="39" />
+          <entry key="JavaScript" value="40" />
           <entry key="SQL" value="2" />
           <entry key="TypeScript" value="240" />
         </counts>
@@ -65,27 +61,27 @@
         <counts>
           <entry key="js" value="33" />
           <entry key="sql" value="6" />
-          <entry key="ts" value="9009" />
+          <entry key="ts" value="9133" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JavaScript" value="33" />
           <entry key="SQL" value="6" />
-          <entry key="TypeScript" value="9009" />
+          <entry key="TypeScript" value="9133" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5571808">
+    <splitter split-orientation="horizontal" split-proportion="0.5299202">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/game-server/app/servers/connector/handler/EntryHandler.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="444">
-                  <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="49" />
+                <state relative-caret-position="222">
+                  <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
                   <folding>
                     <element signature="e#0#58#0" expanded="true" />
                   </folding>
@@ -93,11 +89,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/game-server/app/servers/scene/handler/PlayerHandler.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-567">
-                  <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+                <state relative-caret-position="136">
+                  <caret line="8" column="58" selection-start-line="8" selection-start-column="58" selection-end-line="8" selection-end-column="58" />
                   <folding>
                     <element signature="e#0#57#0" expanded="true" />
                   </folding>
@@ -109,7 +105,7 @@
             <entry file="file://$PROJECT_DIR$/game-server/app/servers/scene/remote/PlayerRemote.ts">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="307">
-                  <caret line="30" lean-forward="true" selection-end-line="45" selection-end-column="1" />
+                  <caret line="31" column="55" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="55" />
                   <folding>
                     <element signature="e#0#65#0" expanded="true" />
                   </folding>
@@ -118,19 +114,10 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/game-server/dist/app/servers/scene/handler/PlayerHandler.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="238">
-                  <caret line="35" column="57" selection-start-line="35" selection-start-column="57" selection-end-line="35" selection-end-column="57" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/game-server/app/util/RouteUtil.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="323">
-                  <caret line="19" column="34" lean-forward="true" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+                <state relative-caret-position="170">
+                  <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
                 </state>
               </provider>
             </entry>
@@ -138,8 +125,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/game-server/app/mysql/userSql.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="216">
-                  <caret line="136" column="10" selection-start-line="136" selection-start-column="10" selection-end-line="136" selection-end-column="10" />
+                <state relative-caret-position="752">
+                  <caret line="164" column="143" selection-start-line="164" selection-start-column="134" selection-end-line="164" selection-end-column="143" />
                   <folding>
                     <element signature="e#0#44#0" expanded="true" />
                   </folding>
@@ -150,8 +137,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/game-server/app.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="714">
-                  <caret line="54" column="22" selection-start-line="54" selection-start-column="22" selection-end-line="54" selection-end-column="22" />
+                <state relative-caret-position="227">
+                  <caret line="55" column="42" selection-start-line="55" selection-start-column="42" selection-end-line="55" selection-end-column="42" />
                   <folding>
                     <element signature="e#0#30#0" expanded="true" />
                   </folding>
@@ -162,7 +149,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/game-server/preload.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="128">
+                <state relative-caret-position="612">
                   <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
                 </state>
               </provider>
@@ -171,7 +158,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/game-server/node_modules/bluebird/js/release/debuggability.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="183">
+                <state relative-caret-position="3366">
                   <caret line="198" column="32" selection-start-line="198" selection-start-column="32" selection-end-line="198" selection-end-column="32" />
                 </state>
               </provider>
@@ -194,7 +181,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/game-server/app/domain/MonsterAI.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="87">
+                <state relative-caret-position="3893">
                   <caret line="241" column="28" selection-start-line="241" selection-start-column="28" selection-end-line="241" selection-end-column="28" />
                 </state>
               </provider>
@@ -203,8 +190,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/game-server/app/domain/scene/GameScene.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="342">
-                  <caret line="132" column="28" lean-forward="true" selection-start-line="132" selection-start-column="28" selection-end-line="132" selection-end-column="28" />
+                <state relative-caret-position="102">
+                  <caret line="164" column="37" selection-start-line="164" selection-start-column="37" selection-end-line="164" selection-end-column="37" />
                   <folding>
                     <element signature="e#0#64#0" expanded="true" />
                   </folding>
@@ -215,8 +202,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/game-server/app/domain/entityData.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="221">
-                  <caret line="13" column="22" lean-forward="true" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+                <state relative-caret-position="-636">
+                  <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
                   <folding>
                     <element signature="e#1#53#0" expanded="true" />
                   </folding>
@@ -227,7 +214,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/game-server/app/domain/entity.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-680">
+                <state relative-caret-position="136">
                   <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
                 </state>
               </provider>
@@ -237,7 +224,7 @@
             <entry file="file://$PROJECT_DIR$/game-server/app/domain/scene/SceneMgr.ts">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="238">
-                  <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+                  <caret line="14" selection-start-line="14" selection-end-line="14" />
                   <folding>
                     <element signature="e#0#64#0" expanded="true" />
                   </folding>
@@ -266,7 +253,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/game-server/app/servers/connector/remote/AuthRemoter.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
+                <state relative-caret-position="340">
                   <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
                 </state>
               </provider>
@@ -285,9 +272,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>DataApi.getInstance()</find>
-      <find>DataApi</find>
-      <find>addEntity</find>
       <find>AreaServerLoader</find>
       <find>areaService</find>
       <find>playerLeave</find>
@@ -313,8 +297,11 @@
       <find>updatePlayer</find>
       <find>invokeCallback</find>
       <find>curPlayerInstId</find>
-      <find>sceneId</find>
       <find>Scene</find>
+      <find>'sceneId'</find>
+      <find>sceneId</find>
+      <find>scene</find>
+      <find>area</find>
     </findStrings>
     <replaceStrings>
       <replace>protected</replace>
@@ -367,16 +354,16 @@
         <option value="$PROJECT_DIR$/game-server/app/domain/MonsterAI.ts" />
         <option value="$PROJECT_DIR$/game-server/dist/app/mysql/userSql.js" />
         <option value="$PROJECT_DIR$/game-server/app/domain/scene/SceneMgr.ts" />
-        <option value="$PROJECT_DIR$/game-server/app/servers/scene/remote/PlayerRemote.ts" />
-        <option value="$PROJECT_DIR$/game-server/app/domain/scene/GameScene.ts" />
-        <option value="$PROJECT_DIR$/game-server/app/domain/entityData.ts" />
         <option value="$PROJECT_DIR$/game-server/app/domain/entity.ts" />
         <option value="$PROJECT_DIR$/game-server/app/servers/scene/filter/PlayerFilter.ts" />
-        <option value="$PROJECT_DIR$/game-server/app/mysql/userSql.ts" />
         <option value="$PROJECT_DIR$/game-server/app/util/RouteUtil.ts" />
+        <option value="$PROJECT_DIR$/game-server/app/mysql/userSql.ts" />
+        <option value="$PROJECT_DIR$/game-server/app/domain/entityData.ts" />
+        <option value="$PROJECT_DIR$/game-server/app/servers/scene/remote/PlayerRemote.ts" />
+        <option value="$PROJECT_DIR$/game-server/app/domain/scene/GameScene.ts" />
         <option value="$PROJECT_DIR$/game-server/app.ts" />
-        <option value="$PROJECT_DIR$/game-server/app/servers/scene/handler/PlayerHandler.ts" />
         <option value="$PROJECT_DIR$/game-server/app/servers/connector/handler/EntryHandler.ts" />
+        <option value="$PROJECT_DIR$/game-server/app/servers/scene/handler/PlayerHandler.ts" />
       </list>
     </option>
   </component>
@@ -394,7 +381,7 @@
       <path value="$PROJECT_DIR$/game-server/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
@@ -408,7 +395,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -564,55 +550,22 @@
               <item name="rpg-server" type="b2602c69:ProjectViewProjectNode" />
               <item name="rpg-server" type="462c0819:PsiDirectoryNode" />
               <item name="game-server" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="rpg-server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="rpg-server" type="462c0819:PsiDirectoryNode" />
-              <item name="game-server" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="servers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="rpg-server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="rpg-server" type="462c0819:PsiDirectoryNode" />
-              <item name="game-server" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="servers" type="462c0819:PsiDirectoryNode" />
-              <item name="scene" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="rpg-server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="rpg-server" type="462c0819:PsiDirectoryNode" />
-              <item name="game-server" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="servers" type="462c0819:PsiDirectoryNode" />
-              <item name="scene" type="462c0819:PsiDirectoryNode" />
-              <item name="handler" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="rpg-server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="rpg-server" type="462c0819:PsiDirectoryNode" />
-              <item name="game-server" type="462c0819:PsiDirectoryNode" />
               <item name="sql" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="E:/lordofpomelo/game-server" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
-    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2018.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="ts.external.directory.path" value="E:\GitHub\RPGServer_TS\rpg-server\game-server\node_modules\typescript\lib" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -665,11 +618,12 @@
       <workItem from="1543908436396" duration="402000" />
       <workItem from="1543909172131" duration="61000" />
       <workItem from="1543909704642" duration="22512000" />
+      <workItem from="1544069302835" duration="3077000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="201661000" />
+    <option name="totallyTimeSpent" value="204738000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -690,15 +644,15 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49947312" weight="0.32899022" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32899022" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.81454164" visible="true" weight="0.32790446" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.8119073" visible="true" weight="0.3626493" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49947312" weight="0.32899022" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="TypeScript" order="9" sideWeight="0.4963119" weight="0.7242128" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.48998946" weight="0.39413682" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.18545838" side_tool="true" visible="true" weight="0.32790446" />
+      <window_info anchor="bottom" id="TypeScript" order="9" sideWeight="0.49578503" weight="0.2616721" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.487882" weight="0.39413682" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.18809272" side_tool="true" visible="true" weight="0.3626493" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -721,20 +675,24 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/game-server/app/domain/entityData.ts</url>
-          <line>50</line>
+          <line>51</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/game-server/app/servers/scene/filter/PlayerFilter.ts</url>
           <line>13</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/game-server/app/servers/scene/filter/PlayerFilter.ts</url>
           <line>15</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/game-server/app/util/RouteUtil.ts</url>
+          <line>24</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="36" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -775,20 +733,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game-server/app/domain/bt/BTConstants.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game-server/app/domain/bt/BTNode.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/game-server/app/mysql/mysqlMgr.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -809,9 +753,6 @@
           <caret line="284" column="20" selection-start-line="284" selection-start-column="20" selection-end-line="284" selection-end-column="20" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game-server/app/domain/IBuff.ts">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/game-server/node_modules/pinus-rpc/lib/rpc-client/mailboxes/mqtt-mailbox.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -851,9 +792,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game-server/app/domain/BuffSystem.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/game-server/app/util/dispatcher.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -888,13 +826,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game-server/app/servers/connector/remote/AuthRemoter.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/game-server/node_modules/pinus/lib/util/utils.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -909,84 +840,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game-server/node_modules/bluebird/js/release/debuggability.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="198" column="32" selection-start-line="198" selection-start-column="32" selection-end-line="198" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/game-server/app/servers/scene/filter/PlayerFilter.ts" />
     <entry file="file://$PROJECT_DIR$/game-server/preload.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
+        <state relative-caret-position="612">
           <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game-server/app/servers/scene/filter/PlayerFilter.ts">
+    <entry file="file://$PROJECT_DIR$/game-server/node_modules/bluebird/js/release/debuggability.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" selection-start-line="12" selection-end-line="13" selection-end-column="39" />
+        <state relative-caret-position="3366">
+          <caret line="198" column="32" selection-start-line="198" selection-start-column="32" selection-end-line="198" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game-server/dist/app/servers/scene/handler/PlayerHandler.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="35" column="57" selection-start-line="35" selection-start-column="57" selection-end-line="35" selection-end-column="57" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/game-server/app/domain/IBuff.ts">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/game-server/app/mysql/userSql.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="136" column="10" selection-start-line="136" selection-start-column="10" selection-end-line="136" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game-server/app.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="54" column="22" selection-start-line="54" selection-start-column="22" selection-end-line="54" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game-server/app/servers/scene/remote/PlayerRemote.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="30" lean-forward="true" selection-end-line="45" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#65#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/game-server/app/domain/BuffSystem.ts">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/game-server/app/domain/MonsterAI.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
+        <state relative-caret-position="3893">
           <caret line="241" column="28" selection-start-line="241" selection-start-column="28" selection-end-line="241" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game-server/app/domain/entityData.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="22" lean-forward="true" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-          <folding>
-            <element signature="e#1#53#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/game-server/app/domain/entity.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-680">
+        <state relative-caret-position="136">
           <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
         </state>
       </provider>
@@ -994,46 +878,114 @@
     <entry file="file://$PROJECT_DIR$/game-server/app/domain/scene/SceneMgr.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="e#0#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game-server/app/domain/bt/BTConstants.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game-server/app/domain/bt/BTNode.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game-server/app/servers/connector/remote/AuthRemoter.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game-server/dist/app/servers/scene/handler/PlayerHandler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="35" column="57" selection-start-line="35" selection-start-column="57" selection-end-line="35" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game-server/app/mysql/userSql.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="164" column="143" selection-start-line="164" selection-start-column="134" selection-end-line="164" selection-end-column="143" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game-server/app/domain/entityData.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-636">
+          <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+          <folding>
+            <element signature="e#1#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game-server/app/servers/scene/remote/PlayerRemote.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="31" column="55" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#65#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/game-server/app/domain/scene/GameScene.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="132" column="28" lean-forward="true" selection-start-line="132" selection-start-column="28" selection-end-line="132" selection-end-column="28" />
+        <state relative-caret-position="102">
+          <caret line="164" column="37" selection-start-line="164" selection-start-column="37" selection-end-line="164" selection-end-column="37" />
           <folding>
             <element signature="e#0#64#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game-server/app/util/RouteUtil.ts">
+    <entry file="file://$PROJECT_DIR$/game-server/app.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="34" lean-forward="true" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+        <state relative-caret-position="227">
+          <caret line="55" column="42" selection-start-line="55" selection-start-column="42" selection-end-line="55" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game-server/app/servers/scene/handler/PlayerHandler.ts">
+    <entry file="file://$PROJECT_DIR$/game-server/app/util/RouteUtil.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-567">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="e#0#57#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="170">
+          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/game-server/app/servers/connector/handler/EntryHandler.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="49" />
+        <state relative-caret-position="222">
+          <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
           <folding>
             <element signature="e#0#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game-server/app/servers/scene/handler/PlayerHandler.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="58" selection-start-line="8" selection-start-column="58" selection-end-line="8" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -1,13 +1,14 @@
 import {Channel} from "pinus/lib/common/service/channelService";
 import {EntityType} from "../../consts/consts";
-import {Entity, Monster} from "../entity";
+import {Entity, Monster, Player} from "../entity";
 import {MonsterData, NpcData, PlayerData, RoleData} from "../entityData";
 import {pinus} from "pinus";
 import {RandomUtils} from "../../util/RandomUtils";
 
 
 export class GameScene {
-    private mId: string; // servers.json -> scene -> id; 等于player 里面的 mSceneId
+    private mServerId: string; // servers.json -> scene -> id; 切换服务器的时候需要用。
+    private mSceneId: number;  // 对应scene配置表里的id,客户端也使用这个id
     private channel: Channel = null;
     private mEntityList = {};
 
@@ -16,8 +17,10 @@ export class GameScene {
     private added = []; // the added entities in one tick
     private reduced = []; // the reduced entities in one tick
 
-    constructor(id: string) {
-        this.mId = id;
+    constructor(serverId: string) {
+        this.mServerId = serverId;
+        this.mSceneId = Number(serverId.split('-')[2]);
+        console.log("mSceneId", this.mSceneId);
         this.mEntityList[EntityType.Player] = {};
         this.mEntityList[EntityType.Monster] = {};
         this.mEntityList[EntityType.Npc] = {};
@@ -129,7 +132,7 @@ export class GameScene {
             return this.channel;
         }
 
-        this.channel = pinus.app.get('channelService').getChannel('scene_' + this.mId, true);
+        this.channel = pinus.app.get('channelService').getChannel('scene_' + this.mServerId, true);
         return this.channel;
     }
 
@@ -163,7 +166,8 @@ export class GameScene {
 
             //let data: any = DataApi.getInstance().mCharacter.findById(2);
             let m: Monster = new Monster({
-                sceneId: this.mId,
+                serverId: this.mServerId,
+                sceneId: this.mSceneId,
                 name: 'monster',
                 x: RandomUtils.range(-4, 4), y: 0.282, z: RandomUtils.range(-3.5, -2),
                 dirX: RandomUtils.range(-1, 1), dirY: 0, dirZ: RandomUtils.range(-1, 1),
@@ -172,5 +176,12 @@ export class GameScene {
             });
             this.addEntity(m);
         }
+    }
+
+    generatePlayer(mysqlPlayerData: any, frontendId: string): number {
+        mysqlPlayerData.sceneId = this.mSceneId;
+        let player = new Player(mysqlPlayerData, frontendId);
+        this.addEntity(player);
+        return player.getData().mInstId;
     }
 }

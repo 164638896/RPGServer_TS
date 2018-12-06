@@ -29,7 +29,7 @@ export class PlayerRemote {
         this.mScene = app.get('scene');
     }
 
-    public async playerLeave(playerId: number, sceneId: number, playerName: string) {
+    public async playerLeave(playerId: number, serverId: number, playerName: string) {
 
         if (!this.mScene) {
             logger.warn('Can not find scene');

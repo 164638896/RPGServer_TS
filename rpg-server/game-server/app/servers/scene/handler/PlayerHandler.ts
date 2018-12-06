@@ -7,7 +7,7 @@ import {EntityType} from "../../../consts/consts";
 import {RoleData} from "../../../domain/entityData";
 import {MathUtils} from "../../../util/MathUtils";
 import {GameScene} from "../../../domain/scene/GameScene";
-import {UserSql} from "../../../mysql/UserSql";
+import {UserSql} from "../../../mysql/userSql";
 
 let logger = getLogger('pinus', path.basename(__filename));
 
@@ -20,28 +20,26 @@ export default function (app: Application) {
 export class PlayerHandler {
     private mScene: GameScene;
     constructor(private app: Application) {
-        this.mScene = app.get('scene');
+        this.mScene = pinus.app.get('scene');
     }
 
     async enterScene(msg: { playerId: string }, session: BackendSession) {
         let playerId = session.get('playerId');
 
-        let playerData: any = await UserSql.getInstance().getPlayerByIdA(playerId);
-        if (!playerData) {
+        let mysqlPlayerData: any = await UserSql.getInstance().getPlayerByIdA(playerId);
+        if (!mysqlPlayerData) {
             logger.warn('Can not find playerId =', playerId);
             return {code: 500, error: true};
         }
 
         if (!this.mScene) {
-            logger.warn('Can not find scene =', playerData.mSceneId);
+            logger.warn('Can not find scene! serverId = ', mysqlPlayerData.serverId);
             return {code: 500, error: true};
         }
 
-        let player = new Player(playerData, session.frontendId);
+        let instId = this.mScene.generatePlayer(mysqlPlayerData, session.frontendId);
 
-        this.mScene.addEntity(player);
-
-        return {code: 200, entities: this.mScene.getAllEntitiesInfo(), curPlayerInstId: player.getData().mInstId};
+        return {code: 200, entities: this.mScene.getAllEntitiesInfo(), curPlayerInstId: instId};
     }
 
     async changeScene(msg: { currSceneId: string, targetSceneId: string }, session: BackendSession) {

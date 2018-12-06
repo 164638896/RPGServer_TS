@@ -120,16 +120,16 @@ export class UserSql {
     createPlayerA = util.promisify(this.createPlayer);
 
     async createPlayer(uid: string, name: string, typeId: number, cb: Function) {
-        let sql = 'insert into Player (userId, typeId, typeName, name, country, rank, level, exp, atk, def, hitRate, dodgeRate, moveSpeed, atkSpeed, hp, mp, maxHp, maxMp, sceneId, x, y, z, dirX, dirY, dirZ, skillPoint) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+        let sql = 'insert into Player (userId, typeId, typeName, name, country, rank, level, exp, atk, def, hitRate, dodgeRate, moveSpeed, atkSpeed, hp, mp, maxHp, maxMp, serverId, x, y, z, dirX, dirY, dirZ, skillPoint) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
         let playerCfg = Cfg.player.getData(1);
         let role = {name: 'test', career: 'warrior', country: 1, gender: 'male'};
         let x = 0.29;
         let y = 0.282;
         let z = -2.6;
         let dirZ = 1;
-        let sceneId = '1';
+        let serverId = 'scene-server-1';
         // role.country = 1;
-        let args = [uid, typeId, 'test', name, 1, 1, 1, 0, playerCfg.atk, playerCfg.def, 0, 0, 1, 1, playerCfg.hp, 100, playerCfg.hp, 100, sceneId, x, y, z, 0, 0, dirZ, 1];
+        let args = [uid, typeId, 'test', name, 1, 1, 1, 0, playerCfg.atk, playerCfg.def, 0, 0, 1, 1, playerCfg.hp, 100, playerCfg.hp, 100, serverId, x, y, z, 0, 0, dirZ, 1];
 
         pinus.app.get('dbclient').query(sql, args, function (err, res) {
             if (err !== null) {
@@ -142,7 +142,7 @@ export class UserSql {
                     userId: uid,
                     typeId: typeId,
                     typeName: role.name,
-                    sceneId: sceneId,
+                    serverId: serverId,
                     name: name,
                     rank: 1,
                     level: 1,
@@ -160,9 +160,9 @@ export class UserSql {
     }
 
     updatePlayer(player: Player, cb: Function) {
-        let sql = 'update Player set x = ? ,y = ? , x = ?, hp = ?, mp = ? , maxHp = ?, maxMp = ?, level = ?, exp = ?, sceneId = ?, atk = ?, def = ?, moveSpeed = ?, atkSpeed = ? where id = ?';
+        let sql = 'update Player set x = ? ,y = ? , x = ?, hp = ?, mp = ? , maxHp = ?, maxMp = ?, level = ?, exp = ?, serverId = ?, atk = ?, def = ?, moveSpeed = ?, atkSpeed = ? where id = ?';
         let data = player.getData() as PlayerData;
-        let args = [data.mPos.x, data.mPos.y, data.mPos.z, data.mHp, data.mMp, data.mMaxHp, data.mMaxMp, data.mLevel, data.mExp, data.mSceneId, data.mAtk, data.mDef, data.mMoveSpeed, data.mAtkSpeed, data.id];
+        let args = [data.mPos.x, data.mPos.y, data.mPos.z, data.mHp, data.mMp, data.mMaxHp, data.mMaxMp, data.mLevel, data.mExp, data.mServerId, data.mAtk, data.mDef, data.mMoveSpeed, data.mAtkSpeed, data.id];
         pinus.app.get('dbclient').query(sql, args, function (err, res) {
             if (err !== null) {
                 console.error('write mysql failed!　' + sql + ' ' + JSON.stringify(player) + ' stack:' + err.stack);

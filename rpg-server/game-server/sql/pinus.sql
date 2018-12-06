@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `Player` (
   `mp` smallint(6) unsigned DEFAULT '0',
   `maxHp` smallint(6) unsigned DEFAULT '0',
   `maxMp` smallint(6) unsigned DEFAULT '0',
-  `sceneId` varchar(30) COLLATE utf8_unicode_ci DEFAULT '',
+  `serverId` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `x` float DEFAULT '0',
   `y` float DEFAULT '0',
   `z` float DEFAULT '0',

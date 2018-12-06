@@ -28,23 +28,23 @@ export class EntryHandler {
 
         await session.abind(userData.id);
 
-        let playerData: any = await UserSql.getInstance().getPlayersByUidA(userData.id);
-        if (!playerData) {
+        let mysqlPlayerData: any = await UserSql.getInstance().getPlayersByUidA(userData.id);
+        if (!mysqlPlayerData) {
             // logger.error('playerData is null');
             // return { code: 500, error: true };
-            playerData = await UserSql.getInstance().createPlayerA(userData.id, msg.name, 210);
+            mysqlPlayerData = await UserSql.getInstance().createPlayerA(userData.id, msg.name, 210);
         }
         //console.log('playerData: ', playerData);
 
-        session.set('playerName', playerData.name);
-        session.set('playerId', playerData.id); // connector 只有 player id，没法绑定具体的Player实例Id，因为playerId 是在area服务器上创建的
-        session.set('sceneId', playerData.sceneId);
+        session.set('playerName', mysqlPlayerData.name);
+        session.set('playerId', mysqlPlayerData.id); // connector 只有 player id，没法绑定具体的Player实例Id，因为playerId 是在area服务器上创建的
+        session.set('serverId', mysqlPlayerData.serverId);
         session.on('closed', this.onUserLeave.bind(this));
         session.pushAll((err: any, result: any) => { // FrontendSession推送到真正的session里，这样创建的BackendSession 里面也可以取到
 
         });
 
-        return {code: 200, playerId: playerData.id};
+        return {code: 200, playerId: mysqlPlayerData.id};
     }
 
     onUserLeave(session: FrontendSession) {
@@ -52,6 +52,6 @@ export class EntryHandler {
             return;
         }
 
-        this.app.rpc.scene.PlayerRemote.playerLeave.route(session)(session.get('playerId'), session.get('sceneId'), session.get('playerName'));
+        this.app.rpc.scene.PlayerRemote.playerLeave.route(session)(session.get('playerId'), session.get('serverId'), session.get('playerName'));
     }
 }

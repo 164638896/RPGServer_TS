@@ -52,8 +52,8 @@ app.configure('production|development', function () {
     app.enable('systemMonitor'); //允许监控
 
     // route configures
-    app.route('area', RouteUtil.scene);
-    //app.route('connector', RouteUtil.connector);
+    app.route('scene', RouteUtil.scene);
+    app.route('connector', RouteUtil.connector);
 
     app.loadConfig('mysql', app.getBase() + '/config/mysql.json');
     // filter configures

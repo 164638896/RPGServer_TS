@@ -65,11 +65,11 @@ export class Player extends Role {
         });
     }
 
-    changeScene(currScene: GameScene, targetSceneId: string, session: BackendSession, cb: Function) {
+    changeScene(currScene: GameScene, targetServerId: string, session: BackendSession, cb: Function) {
         let playerData = this.getData() as PlayerData;
         // 更新数据库
         UserSql.getInstance().updatePlayer(this, () => {
-            session.set('sceneId', targetSceneId);
+            session.set('serverId', targetServerId);
             session.pushAll((err: any, result: any) => {
 
             });
